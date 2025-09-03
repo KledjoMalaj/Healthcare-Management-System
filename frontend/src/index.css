@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.nav-item {
+    @apply px-6 py-1 rounded hover:text-gray-700 hover:bg-cyan-500  cursor-pointer
+    transition duration-100 ease-in-out transform -translate-x-1/200;
+}
+body {
+    @apply bg-gray-400;
+}
