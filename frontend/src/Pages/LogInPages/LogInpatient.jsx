@@ -6,7 +6,7 @@ function LogInPatient(){
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit1 = (data) => {
         console.log(data);
     }
 
@@ -17,7 +17,7 @@ function LogInPatient(){
                 <h1 className="text-white">LogIn Patient</h1><br></br>
 
                 <div className="text-center rounded bg-gray-300 w-100 h-83 m-2">
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit1)}>
 
                         <div><br></br>
                             <label>Name : </label><br></br>
@@ -40,7 +40,7 @@ function LogInPatient(){
                             {errors.password && <span> Passwords is required</span>}
                         </div><br></br><br></br>
 
-                        <button className="submit" type="submit">Submit</button>
+                        <button className="submit" type="submit">Log In</button>
                     </form>
                 </div>
             </div>

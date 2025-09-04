@@ -4,7 +4,7 @@ function PatientCard() {
     const navigate = useNavigate();
 
     const LogInPatient = () => {
-        navigate('/LogIn/patient')
+        navigate('/LogIn/Patient')
     }
     const RegisterPatient = () => {
         navigate('/Register/Patient')

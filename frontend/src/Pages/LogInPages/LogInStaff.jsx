@@ -17,7 +17,7 @@ function LogInStaff(){
 
                 <h1 className="text-white">LogIn Staff</h1><br></br>
 
-                <div className="text-center rounded bg-gray-300 w-100 h-83 m-2">
+                <div className="text-center rounded bg-gray-300 md:w-100 h-83 m-2">
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <div><br></br>
@@ -41,7 +41,7 @@ function LogInStaff(){
                     {errors.password && <span> Passwords is required</span>}
                 </div><br></br><br></br>
 
-                <button className="submit" type="submit">Submit</button>
+                <button className="submit" type="submit">Log In</button>
             </form>
             </div>
             </div>

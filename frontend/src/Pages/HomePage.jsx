@@ -15,12 +15,15 @@ function HomePage() {
                 </div>
             </nav>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-items-center   my-5 ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 justify-items-center mt-2 p-2">
+                <div className="bg-white w-100 h-100 rounded">
                 <StaffCard/>
+                </div>
+                <div className="bg-white w-100 h-100 rounded">
                 <PatientCard/>
+                </div>
             </div>
         </>
-
     )
 }
 export default HomePage

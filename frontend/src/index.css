@@ -22,6 +22,14 @@ body {
     hover:bg-blue-600 w-50
     transition duration-120 ease-in-out transform -translate-x-1/200;
 }
+.submit-register{
+    @apply bg-cyan-900 text-white rounded px-9 py-1.5 cursor-pointer
+    hover:bg-green-600 w-50
+    transition duration-120 ease-in-out transform -translate-x-1/200;
+}
 .input-login{
-    @apply text-center rounded mt-0.5 mx-2 py-0.5 px-5 bg-gray-100
+    @apply text-center rounded mt-0.5 mx-2 py-0.5 px-7 bg-gray-100
+}
+.input-date{
+    @apply text-center rounded mt-0.5 mx-2 py-0.5 px-12 bg-gray-100
 }
