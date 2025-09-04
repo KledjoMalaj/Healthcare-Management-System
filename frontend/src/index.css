@@ -7,3 +7,21 @@
 body {
     @apply bg-gray-400;
 }
+.LogIn-Btn {
+    @apply bg-blue-900 text-white rounded  py-2 cursor-pointer
+    hover:bg-blue-600 w-50
+    transition duration-120 ease-in-out transform -translate-x-1/200;
+}
+.Register-Btn {
+    @apply bg-cyan-900 text-white rounded px-1 py-2 cursor-pointer
+    hover:bg-green-600 w-50
+    transition duration-120 ease-in-out transform -translate-x-1/200;
+}
+.submit{
+    @apply bg-blue-900 text-white rounded px-9 py-1.5 cursor-pointer
+    hover:bg-blue-600 w-50
+    transition duration-120 ease-in-out transform -translate-x-1/200;
+}
+.input-login{
+    @apply text-center rounded mt-0.5 mx-2 py-0.5 px-5 bg-gray-100
+}
