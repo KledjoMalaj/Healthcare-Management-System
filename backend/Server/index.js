@@ -1,11 +1,29 @@
-const express = require('express');
-const app = express();
-const port = 3030
+import express from "express";
+import mongoose from "mongoose";
+import StaffRoutes from "./routes/StaffRoutes.js";
+import PatientRoutes from "./routes/PatientRoutes.js";
+import cors from "cors";
 
-app.get('/', (req, res) => {
-    res.send("Hello")
-})
+const app = express();
+const port = 3030;
+
+app.use(express.json());
+
+app.use(cors({
+    origin: "http://localhost:5173"
+}))
+try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/HMS");
+    console.log("MongoDB connected!");
+} catch (err) {
+    console.error("MongoDB connection error:", err);
+}
+
+mongoose.connection.on("error", err => console.error("MongoDB connection error:", err));
+
+app.use("/staff", StaffRoutes);
+app.use("/patient", PatientRoutes);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+    console.log(`Server running on port ${port}`);
+});

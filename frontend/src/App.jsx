@@ -5,6 +5,8 @@ import LogInStaff from "./Pages/LogInPages/LogInStaff.jsx";
 import RegisterStaff from "./Pages/RegisterPages/RegisterStaff.jsx";
 import LogInPatient from "./Pages/LogInPages/LogInpatient.jsx";
 import RegisterPatient from "./Pages/RegisterPages/RegisterPatien.jsx";
+import StaffPage from "./Pages/StaffPage.jsx";
+import PatientPage from "./Pages/PatientPage.jsx";
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
             <Route path="/Register/Staff" element={<RegisterStaff/>} />
             <Route path="/LogIn/Patient" element={<LogInPatient/>} />
             <Route path="/Register/Patient" element={<RegisterPatient/>} />
+            <Route path="/StaffPage" element={<StaffPage/>} />
+            <Route path="/PatientPage" element={<PatientPage/>}/>
           </Routes>
         </div>
       </Router>

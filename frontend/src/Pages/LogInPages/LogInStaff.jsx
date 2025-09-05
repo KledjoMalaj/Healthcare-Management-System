@@ -1,6 +1,10 @@
 import {useForm} from "react-hook-form";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function LogInStaff(){
+
+    const navigate = useNavigate();
 
     const {register,
            handleSubmit,
@@ -8,7 +12,13 @@ function LogInStaff(){
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
+
+        axios.post("http://localhost:3030/staff/login", data)
+        .then((res) => {
+            if(res.status === 200){
+                navigate('/StaffPage')
+            }
+        })
     }
 
     return (
@@ -22,23 +32,23 @@ function LogInStaff(){
 
                 <div><br></br>
                     <label>Name : </label><br></br>
-                    <input className="input-login" {...register('name', { required: true })}
+                    <input className="input-login" {...register('firstName', { required: true })}
                     placeholder="Enter name" />
-                    {errors.name && <span> Name is required</span>}
+                    {errors.firstName && <span></span>}
                 </div><br></br>
 
                 <div>
                     <label>Email : </label><br></br>
                     <input className="input-login" {...register('email', { required: true })}
                     placeholder="Enter email" />
-                    {errors.email && <span> Email is required</span>}
+                    {errors.email && <span></span>}
                 </div><br></br>
 
                 <div>
                     <label>Password: </label><br></br>
                     <input className="input-login" {...register('password', { required: true })}
                     placeholder="Enter password" type="password" />
-                    {errors.password && <span> Passwords is required</span>}
+                    {errors.password && <span></span>}
                 </div><br></br><br></br>
 
                 <button className="submit" type="submit">Log In</button>

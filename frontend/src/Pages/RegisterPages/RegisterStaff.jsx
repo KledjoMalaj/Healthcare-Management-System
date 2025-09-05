@@ -1,6 +1,11 @@
 import {useForm } from 'react-hook-form'
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function RegisterStaff(){
+
+    const navigate = useNavigate();
+
     const {register,
            handleSubmit,
            watch,
@@ -10,7 +15,12 @@ function RegisterStaff(){
     const password = watch("password")
 
     const onSubmit = (data) => {
-        console.log(data);
+        axios.post(`http://localhost:3030/staff/register`, data)
+        .then(res => {
+            if(res.data.message === "Successfully registered"){
+                navigate('/LogIn/Staff')
+            }
+        })
     }
 
     return(
