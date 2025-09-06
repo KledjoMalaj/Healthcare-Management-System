@@ -15,8 +15,10 @@ function LogInStaff(){
 
         axios.post("http://localhost:3030/staff/login", data)
         .then((res) => {
+            const token = res.data.token;
+            localStorage.setItem("authToken", token);
             if(res.status === 200){
-                navigate('/StaffPage')
+                navigate("/StaffPage");
             }
         })
     }

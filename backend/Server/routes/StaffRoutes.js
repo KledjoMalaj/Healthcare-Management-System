@@ -1,5 +1,9 @@
 import express from "express";
 import Staff from "../models/StaffModel.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import {authenticateToken} from "../authMiddlewere.js";
+dotenv.config();
 
 const router = express.Router();
 
@@ -38,7 +42,18 @@ router.post('/login', async (req, res) => {
         if(staff.password !== password) {
             res.status(400).json({ message: "Passwords do not match" });
         }
-        res.json({ message: "Login successful!" });
+        const token = jwt.sign({id: staff._id,email: staff.email},
+            process.env.ACCESS_TOKEN_SECRET)
+        res.json({token: token})
+
+    }catch(err){
+        res.status(500).json({ message: err.message });
+    }
+})
+router.get('/me', authenticateToken,async (req, res) => {
+    try{
+        const staff = await Staff.findById(req.user.id)
+        res.json(staff)
     }catch(err){
         res.status(500).json({ message: err.message });
     }
