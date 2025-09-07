@@ -33,3 +33,18 @@ body {
 .input-date{
     @apply text-center rounded mt-0.5 mx-2 py-0.5 px-12 bg-gray-100
 }
+.logOut-btn{
+    @apply bg-blue-900 hover:bg-red-700 rounded m-0.5 px-4 py-2 cursor-pointer  text-white
+    transition duration-100 ease-in-out transform -translate-x-1/200
+    my-1 flex pl-0
+}
+.nav-bar{
+    @apply flex justify-between bg-blue-900 text-white rounded m-1
+}
+.menu-line{
+    @apply cursor-pointer hover:bg-blue-800 rounded my-1 m-1
+    transition duration-100 ease-in-out transform -translate-x-1/200;
+}
+.menu-staff{
+    @apply fixed inset-y-0 left-0 w-70 bg-gray-500 text-white p-1 z-50 m-2 rounded shadow-2xl
+}

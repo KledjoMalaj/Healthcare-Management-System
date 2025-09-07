@@ -1,11 +1,16 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
+import {ArrowLeftOnRectangleIcon} from "@heroicons/react/20/solid/index.js";
+import {Bars3Icon} from "@heroicons/react/20/solid/index.js";
+import MenuStaff from "../Cards/MenuStaff.jsx";
 
 function StaffPage() {
 
     const navigate = useNavigate();
     const [staff, setStaff] = useState([]);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
@@ -13,7 +18,6 @@ function StaffPage() {
             headers : {authorization:`Bearer ${token}`}
         })
         .then(res => {
-            console.log(res.data);
             setStaff(res.data);
         })
     },[])
@@ -22,11 +26,27 @@ function StaffPage() {
         localStorage.removeItem("authToken");
         navigate("/LogIn/Staff",{replace:true});
     }
+    if(!staff){
+        navigate("/",{replace:true})
+    }
+
 
     return (
         <>
-            <h1>Staff {staff.firstName}</h1>
-            <button type="submit" onClick={handleLogOut}>Log Out</button>
+            {menuOpen && <MenuStaff onClose={() => setMenuOpen(false)} />}
+
+            <div className="nav-bar">
+
+            <button className="menu-line" type="button" onClick={()=>setMenuOpen(true)}>
+                <Bars3Icon className="mx-4 h-6 w-6"/>
+            </button>
+
+            <h1 className="my-3.5 mx-2 flex"><UserCircleIcon className="h-6 w-6 mx-2 "/>
+                {staff.firstName} {staff.lastName}</h1>
+            <button className="logOut-btn" type="submit" onClick={handleLogOut}>
+                <ArrowLeftOnRectangleIcon className="h-6 w-6 mx-2 my-0.5"/>Log Out</button>
+            </div>
+
         </>
     )
 }
