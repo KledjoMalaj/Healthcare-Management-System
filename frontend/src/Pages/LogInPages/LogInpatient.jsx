@@ -13,7 +13,11 @@ function LogInPatient(){
     const onSubmit1 = (data) => {
         axios.post("http://localhost:3030/patient/login",data)
         .then(res => {
-            if(res.status === 200){
+
+            const token = res.data.token;
+            localStorage.setItem("authToken", token);
+
+            if(res.status === 200) {
                 navigate('/PatientPage')
             }
         })

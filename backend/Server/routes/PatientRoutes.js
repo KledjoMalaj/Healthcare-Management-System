@@ -1,5 +1,10 @@
 import express from "express";
 import Patient from "../models/PatientModel.js"
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import {authenticateToken} from "../authMiddlewere.js";
+import Staff from "../models/StaffModel.js";
+dotenv.config();
 
 const router = express.Router();
 
@@ -34,9 +39,20 @@ router.post('/login', async (req, res) => {
         if(patient.password !== password){
             return res.status(400).json({message:"Passwords do not match"});
         }
-        res.json({message:"Login Successfull"});
+        const token = jwt.sign({id: patient._id, email: patient.email},
+            process.env.ACCESS_TOKEN_SECRET)
+        res.json({token: token})
     }catch(err){
         res.status(400).json({message:"Invalid Login"});
+    }
+})
+
+router.get('/me', authenticateToken,async (req, res) => {
+    try{
+        const patient = await Patient.findById(req.user.id)
+        res.json(patient)
+    }catch(err){
+        res.status(500).json({ message: err.message });
     }
 })
 
