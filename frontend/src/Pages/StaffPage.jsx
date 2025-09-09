@@ -5,12 +5,14 @@ import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
 import {ArrowLeftOnRectangleIcon} from "@heroicons/react/20/solid/index.js";
 import {Bars3Icon} from "@heroicons/react/20/solid/index.js";
 import MenuStaff from "../Cards/MenuStaff.jsx";
+import StaffProfile from "../Cards/StaffComponents/StaffProfile.jsx";
 
 function StaffPage() {
 
     const navigate = useNavigate();
     const [staff, setStaff] = useState([]);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [page, setPage] = useState("home");
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
@@ -30,10 +32,9 @@ function StaffPage() {
         navigate("/",{replace:true})
     }
 
-
     return (
         <>
-            {menuOpen && <MenuStaff onClose={() => setMenuOpen(false)} />}
+            {menuOpen && <MenuStaff setPage={setPage} onClose={() => setMenuOpen(false)} />}
 
             <div className="nav-bar">
 
@@ -46,6 +47,8 @@ function StaffPage() {
             <button className="logOut-btn" type="submit" onClick={handleLogOut}>
                 <ArrowLeftOnRectangleIcon className="h-6 w-6 mx-2 my-0.5"/>Log Out</button>
             </div>
+
+            {page === "Profile" && <StaffProfile user={staff}/>}
 
         </>
     )

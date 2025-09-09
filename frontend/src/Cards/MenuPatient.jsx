@@ -13,13 +13,13 @@ function MenuPatient({ onClose }) {
 
             {/* MenuStaff items */}
             <nav className="mt-1 flex flex-col space-y-2 bg-gray-400 rounded shadow-lg">
-                <button className="flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
+                <button className="text-gray-600 font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
                     <HomeIcon className="h-6 w-6"/>Home</button>
-                <button className="flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
+                <button className="text-gray-600 font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
                     <UserIcon className="h-6 w-6"/>Profile</button>
-                <button className="flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
+                <button className="text-gray-600 font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
                     <ClipboardDocumentListIcon className="h-6 w-6"/> Appointments</button>
-                <button className="flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
+                <button className="text-gray-600 font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900">
                     <BanknotesIcon className="h-6 w-6"/>Billing</button>
             </nav>
         </div>

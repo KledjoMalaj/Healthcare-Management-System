@@ -15,8 +15,17 @@ const StaffSchema = new mongoose.Schema({
     },
     password: {
         type: String, required: true
-    }
-})
+    },
+    role: {
+        type: String,
+        enum: ['Doctor', 'Nurse', 'Administrator', 'Other'],
+        required: true
+    },
+    specialty: {
+        type:[String]
+    },
+
+});
 
 const Staff = mongoose.model('Staff', StaffSchema);
 

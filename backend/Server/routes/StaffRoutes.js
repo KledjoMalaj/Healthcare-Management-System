@@ -8,7 +8,7 @@ dotenv.config();
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-    const { firstName, lastName, dateOfBirth, email, password } = req.body;
+    const { firstName, lastName, dateOfBirth, email, password, role, specialty } = req.body;
     try {
         const dob = new Date(dateOfBirth);
         if (isNaN(dob.getTime())) {
@@ -20,7 +20,9 @@ router.post("/register", async (req, res) => {
             lastName,
             dateOfBirth: dob,
             email,
-            password
+            password,
+            role,
+            specialty,
         });
 
         await newStaff.save();
@@ -50,6 +52,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 })
+
 router.get('/me', authenticateToken,async (req, res) => {
     try{
         const staff = await Staff.findById(req.user.id)
@@ -58,6 +61,38 @@ router.get('/me', authenticateToken,async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 })
+
+
+router.patch('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    const updates = req.body;
+
+    try {
+
+        if (updates.dateOfBirth) {
+            const dob = new Date(updates.dateOfBirth);
+            if (isNaN(dob.getTime())) {
+                return res.status(400).json({ message: "Invalid date format" });
+            }
+            updates.dateOfBirth = dob;
+        }
+
+        const updatedStaff = await Staff.findByIdAndUpdate(id, updates, { new: true });
+
+        if (!updatedStaff) {
+            return res.status(404).json({ message: "Staff not found" });
+        }
+
+        res.json({ message: "Staff updated successfully", staff: updatedStaff });
+    } catch (err) {
+        console.error("Error updating staff:", err);
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
+
 
 
 
