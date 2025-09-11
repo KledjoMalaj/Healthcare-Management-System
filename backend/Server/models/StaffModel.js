@@ -19,7 +19,6 @@ const StaffSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['Doctor', 'Nurse', 'Administrator', 'Other'],
-        required: true
     },
     specialty: {
         type:[String]

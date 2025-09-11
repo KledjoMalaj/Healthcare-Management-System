@@ -90,10 +90,45 @@ router.patch('/edit/:id', async (req, res) => {
     }
 });
 
+router.patch("/add-specialty/:id", async (req, res) => {
+    const { id } = req.params;
+    const { specialty } = req.body;
 
+    try {
+        const updatedStaff = await Staff.findByIdAndUpdate(
+            id,
+            { $push: { specialty: specialty } },
+            { new: true }
+        );
 
+        if (!updatedStaff) {
+            return res.status(404).json({ message: "Staff not found" });
+        }
 
+        res.json({ message: "Specialty added", staff: updatedStaff });
+    } catch (err) {
+        console.error("Error adding specialty:", err);
+        res.status(500).json({ message: err.message });
+    }
+});
 
+router.patch('/delete-specialty/:id', async (req, res) => {
+    const { id } = req.params;
+    const { specialty } = req.body;
+    try{
+        const updatedStaff = await Staff.findByIdAndUpdate(
+            id,
+            {$pull: {specialty :specialty } },
+            { new: true });
 
+        if (!updatedStaff) {
+            return res.status(404).json({ message: "Staff not found" });
+        }
+        res.json({ message: "Specialty removed successfully", staff: updatedStaff });
+    }catch(err){
+        console.error("Error deleting staff:", err);
+        res.status(500).json({ message: err.message });
+    }
+})
 
 export default router;
