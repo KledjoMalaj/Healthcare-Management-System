@@ -56,4 +56,18 @@ router.get('/me', authenticateToken,async (req, res) => {
     }
 })
 
+router.patch('/edit/:id', async (req, res) => {
+    const {id} = req.params;
+    const update = req.body;
+    try{
+        const UpdatedPatient = await Patient.findByIdAndUpdate(id, update, {new: true})
+        if(!UpdatedPatient){
+            res.status(404).json({message:"No patient found"});
+        }
+        res.json({ message: "Patient updated successfully", patient: UpdatedPatient });
+    }catch(err){
+        res.status(500).json({ message: err.message });
+    }
+})
+
 export default router;

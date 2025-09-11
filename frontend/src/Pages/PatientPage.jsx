@@ -4,11 +4,13 @@ import axios from "axios";
 import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
 import {ArrowLeftOnRectangleIcon, Bars3Icon} from "@heroicons/react/20/solid/index.js";
 import MenuPatient from "../Cards/MenuPatient.jsx";
+import PatientProfile from "../Cards/PatientComponents/PatientProfile.jsx";
 
 function PatientPage() {
     const navigate = useNavigate();
     const [patient, setPatient] = useState([]);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [page, setPage] = useState("home");
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
@@ -31,7 +33,7 @@ function PatientPage() {
 
     return (
         <>
-            {menuOpen && <MenuPatient onClose={() => setMenuOpen(false)} />}
+            {menuOpen && <MenuPatient setPage={setPage} onClose={() => setMenuOpen(false)} />}
 
             <div className="nav-bar">
                 <button className="menu-line" type="button"  onClick={()=>setMenuOpen(true)}>
@@ -42,6 +44,8 @@ function PatientPage() {
                 <button className="logOut-btn" type="submit" onClick={handleLogout}>
                     <ArrowLeftOnRectangleIcon className="h-6 w-6 mx-2 my-0.5 "/>Log Out</button>
             </div>
+
+            {page === "Profile" && <PatientProfile user={patient}/>}
         </>
     )
 }
