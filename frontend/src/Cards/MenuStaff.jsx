@@ -3,6 +3,7 @@ import {HomeIcon} from "@heroicons/react/16/solid/index.js";
 import {UserIcon} from "@heroicons/react/20/solid/index.js";
 import {ClipboardDocumentListIcon} from "@heroicons/react/16/solid/index.js";
 import {BanknotesIcon} from "@heroicons/react/16/solid/index.js";
+import {FaceSmileIcon} from "@heroicons/react/16/solid/index.js";
 
 function MenuStaff({ onClose, setPage }) {
 
@@ -18,6 +19,9 @@ function MenuStaff({ onClose, setPage }) {
                 <button className="text-gray-600 font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900"
                 onClick={()=> { setPage("Profile"); onClose()}}>
                     <UserIcon className="h-6 w-6"/>Profile</button>
+                <button className="text-gray-600 font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900"
+                        onClick={()=> { setPage("Patients"); onClose()}}>
+                    <FaceSmileIcon className="h-5 w-5"/>Patients</button>
                 <button className="text-gray-600 font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-blue-900"
                 onClick={() => { setPage("Appointments"); onClose()}}>
                     <ClipboardDocumentListIcon className="h-6 w-6"/> Appointments</button>

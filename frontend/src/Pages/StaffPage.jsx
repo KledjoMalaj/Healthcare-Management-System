@@ -6,6 +6,8 @@ import {ArrowLeftOnRectangleIcon} from "@heroicons/react/20/solid/index.js";
 import {Bars3Icon} from "@heroicons/react/20/solid/index.js";
 import MenuStaff from "../Cards/MenuStaff.jsx";
 import StaffProfile from "../Cards/StaffComponents/StaffProfile.jsx";
+import StaffAppointments from "../Cards/StaffComponents/StaffAppointments.jsx";
+import StaffPatients from "../Cards/StaffComponents/StaffPatients.jsx";
 
 function StaffPage() {
 
@@ -49,6 +51,8 @@ function StaffPage() {
             </div>
 
             {page === "Profile" && <StaffProfile user={staff}/>}
+            {page === "Appointments" && <StaffAppointments user={staff}/>}
+            {page === "Patients" && <StaffPatients user={staff} />}
 
         </>
     )

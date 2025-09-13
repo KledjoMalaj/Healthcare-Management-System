@@ -3,7 +3,6 @@ import Patient from "../models/PatientModel.js"
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import {authenticateToken} from "../authMiddlewere.js";
-import Staff from "../models/StaffModel.js";
 dotenv.config();
 
 const router = express.Router();
@@ -69,5 +68,22 @@ router.patch('/edit/:id', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 })
+
+
+router.get("/search", async (req, res) => {
+    const { q } = req.query;
+    try {
+        const patients = await Patient.find({
+            $or: [
+                { firstName: new RegExp(q, "i") },
+                { lastName: new RegExp(q, "i") },
+            ],
+        }).limit(10);
+
+        res.json(patients);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 export default router;

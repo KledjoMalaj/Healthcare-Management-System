@@ -31,9 +31,9 @@ function PatientProfile({user}){
 
                         <div className="mt-2">
                         <label className="text-black ml-2">First Name : </label><br></br>
-                        <input className="edit-form" {...register('name', { required: true })}
+                        <input className="edit-form" {...register('firstName', { required: true })}
                                defaultValue={user.firstName} />
-                        {errors.name && <span></span>}
+                        {errors.firstName && <span></span>}
                         </div>
 
                         <div className="mt-2">
