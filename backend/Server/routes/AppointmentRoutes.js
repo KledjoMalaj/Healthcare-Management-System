@@ -27,4 +27,19 @@ router.get('/view/:id',async (req,res)=>{
     }
 })
 
+router.delete('/delete', async (req, res) => {
+    const { id } = req.body;
+    try {
+        const appointment = await Appointment.findByIdAndDelete(id);
+        if (!appointment) {
+            return res.status(404).json({ message: "Appointment not found" });
+        }
+        res.status(200).json({ message: "Appointment Deleted" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
 export default router;

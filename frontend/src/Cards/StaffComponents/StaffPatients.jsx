@@ -38,6 +38,7 @@ function StaffPatients({user}) {
         axios.post('http://localhost:3030/appointment/add',data)
             .then((res)=>{
                 console.log(res)
+                setCard("normal")
             })
     }
 
@@ -91,7 +92,7 @@ function StaffPatients({user}) {
                 {Card === "Appointment" &&
                     <>
                         <div className="bg-blue-950 rounded mt-2 max-w-md shadow-2xl p-1 space-y-2">
-                            <h1 className="m-3"> Appointment Form for {Patient}  </h1>
+                            <h1 className="m-3">Add Appointment for {Patient}</h1>
 
                             <form className="text-center m-3 bg-gray-300 rounded p-3" onSubmit={handleSubmit(onSubmit)}>
 
