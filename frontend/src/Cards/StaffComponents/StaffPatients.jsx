@@ -41,8 +41,6 @@ function StaffPatients({user}) {
             })
     }
 
-    console.log(Patient)
-
     return (
         <>
             <div className="m-1 text-white bg-blue-900 rounded p-2.5">

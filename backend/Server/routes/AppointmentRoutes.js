@@ -16,4 +16,15 @@ router.post("/add", async (req,res) =>{
     }
 })
 
+router.get('/view/:id',async (req,res)=>{
+    const {id} = req.params
+    try{
+        const ViewAppointments = await Appointment.find({provider:id})
+            .populate('patient','firstName lastName')
+        res.json(ViewAppointments)
+    }catch (err){
+        res.status(500).json({message:err.message})
+    }
+})
+
 export default router;
