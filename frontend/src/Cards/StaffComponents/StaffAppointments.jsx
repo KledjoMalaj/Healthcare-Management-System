@@ -19,10 +19,10 @@ function StaffAppointments({user}){
                 <div className="mt-5 bg-gray-400 rounded p-2 pb-4 shadow-2xl">
                     <h1 className="text-gray-600 font-semibold">View Appointments</h1>
 
-                    <div className="flex gap-6 m-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 m-2">
                     {AppointmentData && AppointmentData.map(i=>
                     <>
-                        <div className="flex m-2 bg-blue-900 rounded p-3">
+                        <div className="m-2 bg-blue-900 rounded p-3">
                             <div>
                             <h1>Patient : {i.patient.firstName} {i.patient.lastName}</h1>
                             <h1>Date : {new Date(i.date).toLocaleDateString()}</h1>

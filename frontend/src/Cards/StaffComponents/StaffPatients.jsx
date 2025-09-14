@@ -56,8 +56,9 @@ function StaffPatients({user}) {
                     className="w-full max-w-md px-3 py-2 border rounded shadow"
                 />
 
+                <div className="grid grid-cols-1 sm:grid-cols-2">
                 {results.length > 0 && (
-                    <div className="bg-blue-800 rounded mt-2 max-w-md shadow-2xl p-1 space-y-2">
+                    <div className="bg-blue-900 rounded mt-2 max-w-md  p-1 space-y-2">
                         {results.map((p) => (
                             <div
                                 key={p._id}
@@ -86,12 +87,13 @@ function StaffPatients({user}) {
                         ))}
                     </div>
                 )}
+
                 {Card === "Appointment" &&
                     <>
-                        <div className="bg-blue-800 rounded mt-2 max-w-md shadow-2xl p-1 space-y-2">
+                        <div className="bg-blue-950 rounded mt-2 max-w-md shadow-2xl p-1 space-y-2">
                             <h1 className="m-3"> Appointment Form for {Patient}  </h1>
 
-                            <form className="m-3 bg-gray-300 rounded p-3" onSubmit={handleSubmit(onSubmit)}>
+                            <form className="text-center m-3 bg-gray-300 rounded p-3" onSubmit={handleSubmit(onSubmit)}>
 
                                 <div>
                                 <label className="text-gray-600" >Set Date :</label>
@@ -99,21 +101,22 @@ function StaffPatients({user}) {
                                        {...register("date",{required:true})}
                                        type="date"/>
                                 {errors.date && <span>{errors.date.message}</span>}
-                                </div>
+                                </div><br></br>
 
                                 <div>
-                                    <label className="text-gray-600">Reason :</label>
-                                    <input className="m-3 rounded h-30 w-60 bg-white border"
+                                    <label className="text-gray-600">Reason :</label><br></br>
+                                    <input className="m-3 rounded h-30 w-60 bg-white border text-gray-600"
                                         {...register("reason",{required:true})}
                                     ></input>
                                     {errors.reason && <span>{errors.reason.message}</span>}
                                 </div>
 
-                                <button type="submit">Add</button>
+                                <button className="submit" type="submit">Add</button>
                             </form>
                         </div>
                     </>
                 }
+                </div>
             </div>
             </div>
         </>
