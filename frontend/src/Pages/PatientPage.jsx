@@ -5,6 +5,7 @@ import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
 import {ArrowLeftOnRectangleIcon, Bars3Icon} from "@heroicons/react/20/solid/index.js";
 import MenuPatient from "../Cards/MenuPatient.jsx";
 import PatientProfile from "../Cards/PatientComponents/PatientProfile.jsx";
+import PatientAppointments from "../Cards/PatientComponents/PatientAppointments.jsx";
 
 function PatientPage() {
     const navigate = useNavigate();
@@ -46,6 +47,7 @@ function PatientPage() {
             </div>
 
             {page === "Profile" && <PatientProfile user={patient}/>}
+            {page === "Appointments" && <PatientAppointments user={patient} />}
         </>
     )
 }
