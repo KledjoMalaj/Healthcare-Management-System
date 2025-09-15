@@ -25,7 +25,7 @@ router.get('/view/:id',async (req,res)=>{
                     {patient:id}
                 ]}
         )
-            .populate('patient provider','firstName lastName')
+            .populate('patient provider','firstName lastName role')
         res.json(ViewAppointments)
     }catch (err){
         res.status(500).json({message:err.message})

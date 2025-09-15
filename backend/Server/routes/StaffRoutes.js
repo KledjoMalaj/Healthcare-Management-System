@@ -131,4 +131,13 @@ router.patch('/delete-specialty/:id', async (req, res) => {
     }
 })
 
+router.get('/providers', async (req,res) => {
+    try{
+        const providers = await Staff.find({},'_id firstName lastName role')
+        res.json(providers)
+    }catch (err){
+        res.status(500).json({message:err.message})
+    }
+})
+
 export default router;
