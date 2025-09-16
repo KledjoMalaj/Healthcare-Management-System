@@ -57,3 +57,13 @@ body {
 .edit-form-select{
     @apply text-center rounded mt-0.5 mx-2 py-0.5 px-15 bg-gray-100 text-black
 }
+.Scheduled{
+    @apply  rounded-4xl border p-1 border-sky-400 border-2 text-sky-700 bg-sky-100 font-bold
+}
+.Confirmed{
+    @apply rounded-4xl border p-1 border-emerald-400 border-2 text-emerald-700 bg-emerald-100 font-bold
+}
+.AppointmentCard {
+    @apply m-1 rounded shadow hover:shadow-2xl hover:m-0.5 p-4 bg-white text-gray-700
+    transition duration-450 ease-in-out
+}

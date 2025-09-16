@@ -4,10 +4,10 @@ import Appointment from "../models/AppointmentModel.js"
 const router = express.Router();
 
 router.post("/add", async (req,res) =>{
-    const {patient,provider,date,reason}= req.body
+    const {patient,provider,date,time,reason,status}= req.body
     try {
         const newAppointment = new Appointment({
-            patient,provider,date,reason
+            patient,provider,date,time,reason,status
         })
         await newAppointment.save();
         res.status(201).json({message:"Appointment Added"})
