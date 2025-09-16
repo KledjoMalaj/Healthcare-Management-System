@@ -37,6 +37,13 @@ function PatientAppointments({user}){
             })
     }
 
+    function handleDelete(id)  {
+        axios.delete('http://localhost:3030/appointment/delete',{data:{id:id}})
+            .then((res)=>{
+                console.log(res)
+            })
+    }
+
     return (
         <>
 
@@ -72,10 +79,13 @@ function PatientAppointments({user}){
                                             </div>
 
                                             </div>
-                                            <div className="bg-gray-300 rounded p-1 mt-2">
+                                            <div className="bg-gray-200 rounded p-1 mt-2">
                                                 <h1 className="ml-2">{i.reason}</h1>
                                             </div>
-                                            <button className=" border-1 rounded-4xl px-4 hover:bg-red-200 hover:border-red-600 cursor-pointer mt-4" >Cancel</button>
+                                            <div className="flex justify-between">
+                                                <button className="border-1 rounded-4xl px-4 py-1 hover:bg-emerald-200 hover:border-emerald-600 cursor-pointer mt-4">Reschedule</button>
+                                                <button onClick={()=>handleDelete(i._id)} className="border-1 rounded-4xl px-4 py-1 hover:bg-red-200 hover:border-red-600 cursor-pointer mt-4">Remove</button>
+                                            </div>
                                         </div>
                                     </div>
                                     </div>

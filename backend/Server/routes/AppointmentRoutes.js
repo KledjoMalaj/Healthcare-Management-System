@@ -45,6 +45,22 @@ router.delete('/delete', async (req, res) => {
     }
 });
 
+router.patch('/confirm/:id',async (req,res)=>{
+    const {id} = req.params;
+    const {status} = req.body;
+    try{
+        const updatedAppointment = await Appointment.findByIdAndUpdate(
+            id,
+            {$set:{status}},
+            {new :true}
+        )
+        res.json(updatedAppointment)
+    }catch (err){
+        res.status(500).json({message: err.message})
+    }
+})
+
+
 
 
 export default router;
