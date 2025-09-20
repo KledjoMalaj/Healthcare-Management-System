@@ -63,6 +63,9 @@ body {
 .Confirmed{
     @apply rounded-4xl border p-1 border-emerald-400 border-2 text-emerald-700 bg-emerald-100 font-bold
 }
+.Done{
+    @apply rounded-4xl  bg-gradient-to-b from-blue-500 to-blue-700 px-4 py-1 text-white border-2 font-bold
+}
 .AppointmentCard {
     @apply m-1 rounded shadow hover:shadow-2xl hover:m-0.5 p-4 bg-white text-gray-700
     transition duration-450 ease-in-out
@@ -82,5 +85,6 @@ body {
 }
 .Home-Component2{
     @apply rounded m-3 mt-1 bg-gradient-to-r from-blue-900 to-sky-500 p-5 text-white
-    hover:from-blue-700 hover:to-sky-300 transition duration-250 ease-in-out
+    hover:from-blue-700 hover:to-sky-300 transition-all duration-250 ease-in-out
+    hover:mx-1
 }

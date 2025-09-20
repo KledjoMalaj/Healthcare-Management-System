@@ -28,6 +28,14 @@ function StaffAppointments({user}){
             })
     }
 
+    function handleDone(id){
+        const status = "Done"
+        axios.patch(`http://localhost:3030/appointment/confirm/${id}`,{status})
+            .then((res)=>{
+                console.log(res)
+        })
+    }
+
     return(
         <>
             <div className="m-1 text-white bg-blue-900 rounded p-2.5">
@@ -61,6 +69,9 @@ function StaffAppointments({user}){
                                                 <button className="border-1 rounded-4xl px-4 py-1 hover:bg-emerald-200 hover:border-emerald-600 cursor-pointer mt-4">Reschedule</button>
                                                 <button onClick={()=>handleDelete(i._id)} className="border-1 rounded-4xl px-4 py-1 hover:bg-red-200 hover:border-red-600 cursor-pointer mt-4">Remove</button>
                                                 <button onClick={()=>handleConfirm(i._id)} className="border-1 rounded-4xl px-4 py-1 hover:bg-purple-200 hover:border-purple-600 cursor-pointer mt-4" >Confirm</button>
+                                            </div>
+                                            <div onClick={()=> handleDone(i._id)} className="flex justify-center bg-blue-900 text-white p-2 rounded mt-5 cursor-pointer hover:bg-blue-500 ">
+                                                <button onClick={() => handleDone(i._id)} className="cursor-pointer">Mark As Done</button>
                                             </div>
                                         </div>
                                     </div>
