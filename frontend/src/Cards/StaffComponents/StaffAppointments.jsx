@@ -33,10 +33,10 @@ function StaffAppointments({user}){
             <div className="m-1 text-white bg-blue-900 rounded p-2.5">
                 <h1> Appointments Page</h1>
 
-                <div className="mt-5 bg-gray-400 rounded p-2 pb-4 shadow-2xl">
+                <div className="mt-5 bg-gray-300 rounded p-2 pb-4 shadow-2xl">
                     <h1 className="text-gray-600 font-semibold">View Appointments</h1>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 m-1 mt-2">
+                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-1 mt-2">
                             {AppointmentData && AppointmentData.map((i) =>
                                 <>
                                     <div key={i} className="AppointmentCard">

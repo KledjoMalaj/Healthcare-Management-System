@@ -67,3 +67,20 @@ body {
     @apply m-1 rounded shadow hover:shadow-2xl hover:m-0.5 p-4 bg-white text-gray-700
     transition duration-450 ease-in-out
 }
+.Staff-Home {
+    @apply bg-gradient-to-b from-blue-500 to-blue-700 p-6 text-white rounded m-1
+    hover:drop-shadow-2xl drop-shadow-gray-700
+    hover:bg-gradient-to-b hover:from-blue-700 hover:to-blue-900 hover:m-0
+    transition-all duration-200 ease-in-out transform -translate-x-1/200
+}
+.Staff-Profile {
+    @apply bg-gradient-to-b from-blue-500 to-blue-700 p-6 text-white rounded m-1
+    drop-shadow-2xl drop-shadow-gray-700
+}
+.Home-Component{
+    @apply bg-gradient-to-b from-blue-500 to-blue-700 p-6 text-white rounded m-3
+}
+.Home-Component2{
+    @apply rounded m-3 mt-1 bg-gradient-to-r from-blue-900 to-sky-500 p-5 text-white
+    hover:from-blue-700 hover:to-sky-300 transition duration-250 ease-in-out
+}

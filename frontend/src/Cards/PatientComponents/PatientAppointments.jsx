@@ -60,7 +60,7 @@ function PatientAppointments({user}){
                     <div className="mt-2 bg-gray-300 rounded p-2 pb-4 shadow-2xl">
                         <h1 className="text-gray-600 font-semibold">View Appointments</h1>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 m-1 mt-2">
+                        <div className="grid sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 m-1 mt-2">
                             {appointment && appointment.map((i) =>
                                 <>
                                     <div key={i} className="AppointmentCard">
@@ -98,7 +98,7 @@ function PatientAppointments({user}){
 
                 {page === "MakeAppointment" &&
                     <>
-                        <div className="bg-gray-400 rounded p-2 mt-2 shadow-2xl">
+                        <div className="bg-gray-300 rounded p-2 mt-2 shadow-2xl">
                             <div className="flex justify-between">
                                 <div>
                                     <h1 className="text-gray-600 font-semibold mt-2">Appointment form</h1>
@@ -111,10 +111,10 @@ function PatientAppointments({user}){
                             </div>
 
                             <div className="mt-2 flex justify-center">
-                                <form className="bg-blue-900 p-4 rounded shadow-lg w-90" onSubmit={handleSubmit(onSubmit)}>
-                                    <div className="flex justify-between">
+                                <form className="bg-white p-4 rounded text-gray-600 shadow-lg w-90" onSubmit={handleSubmit(onSubmit)}>
+                                    <div className="flex justify-between ">
                                     <label>Select Provider :</label>
-                                    <select className="text-gray-100 cursor-pointer text-center bg-blue-950 rounded p-1 w-40" {...register('provider',{required:true})}>
+                                    <select className="text-white cursor-pointer text-center bg-gray-400 rounded p-1 w-40" {...register('provider',{required:true})}>
                                         <option> Choose Provider </option>
                                         {providers && providers.map((i)=>
                                             <option key={i._id} value={i._id}>{i.firstName} {i.lastName} {i.role}</option>
@@ -123,21 +123,21 @@ function PatientAppointments({user}){
                                     </div>
                                     <div className="flex justify-between mt-4">
                                         <label>Select Date :</label>
-                                        <input className="bg-blue-950 rounded p-1 w-40" {...register('date',{required:true})} type="date">
+                                        <input className="bg-gray-400 text-white rounded p-1 w-40" {...register('date',{required:true})} type="date">
                                         </input>
                                     </div>
                                     <div className="flex justify-between mt-4">
                                         <label>Set Time :</label>
-                                        <input className="bg-blue-950 rounded p-1 w-40" {...register('time',{required:true})}>
+                                        <input className="bg-gray-400 rounded p-1 w-40" {...register('time',{required:true})}>
                                         </input>
                                     </div>
                                     <div className="flex justify-between mt-4">
                                         <label>Reason :</label>
-                                        <input className="bg-white text-gray-700 text-center h-20 w-40 rounded" {...register('reason')} type="text"></input>
+                                        <input className="bg-gray-400 text-gray-700 text-center h-20 w-40 rounded" {...register('reason')} type="text"></input>
                                     </div>
 
                                     <div className="flex justify-center">
-                                    <button className="mt-4 bg-emerald-600 shadow-lg px-15 py-1 rounded cursor-pointer" type="submit">Book</button>
+                                    <button className="mt-4 bg-emerald-600 shadow-lg px-15 py-1 rounded cursor-pointer text-white" type="submit">Book</button>
                                     </div>
                                 </form>
                             </div>

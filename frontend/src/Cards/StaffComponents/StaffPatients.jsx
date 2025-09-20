@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import {CalendarDaysIcon} from "@heroicons/react/16/solid/index.js";
 import {IdentificationIcon} from "@heroicons/react/16/solid/index.js";
+import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
 import {useForm} from "react-hook-form";
 
 function StaffPatients({user}) {
@@ -64,11 +65,14 @@ function StaffPatients({user}) {
                             <div
                                 key={p._id}
                                 className="px-3 py-2 rounded bg-gray-300 hover:bg-gray-200">
-                                <div className="font-semibold text-gray-600 ">
+                                <div className="flex gap-2 text-gray-600 ">
+                                    <UserCircleIcon className="h-8 w-8"/>
+                                    <div className="text-xl font-bold">
                                     {p.firstName} {p.lastName}
+                                    </div>
                                 </div>
-                                <div className="text-sm text-gray-600">
-                                    DOB: {new Date(p.dateOfBirth).toLocaleDateString()} <br />
+                                <div className="text-gray-600 mt-2">
+                                    Date Of birth : {new Date(p.dateOfBirth).toLocaleDateString()} <br />
                                     {p.contact?.email}
                                 </div>
 

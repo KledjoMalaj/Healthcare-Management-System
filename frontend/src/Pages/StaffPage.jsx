@@ -8,13 +8,14 @@ import MenuStaff from "../Cards/MenuStaff.jsx";
 import StaffProfile from "../Cards/StaffComponents/StaffProfile.jsx";
 import StaffAppointments from "../Cards/StaffComponents/StaffAppointments.jsx";
 import StaffPatients from "../Cards/StaffComponents/StaffPatients.jsx";
+import StaffHome from "../Cards/StaffComponents/StaffHome.jsx";
 
 function StaffPage() {
 
     const navigate = useNavigate();
     const [staff, setStaff] = useState([]);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [page, setPage] = useState("home");
+    const [page, setPage] = useState("Home");
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
@@ -53,6 +54,7 @@ function StaffPage() {
             {page === "Profile" && <StaffProfile user={staff}/>}
             {page === "Appointments" && <StaffAppointments user={staff}/>}
             {page === "Patients" && <StaffPatients user={staff} />}
+            {page === "Home" && <StaffHome user={staff}/>}
 
         </>
     )
