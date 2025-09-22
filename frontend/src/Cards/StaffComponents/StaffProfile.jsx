@@ -41,13 +41,13 @@ function StaffProfile({user}){
 
     return (
         <>
-            <div className="Staff-Profile">
+            <div className="bg-white rounded m-1 p-2">
                 <h1>Profile {user.firstName} {user.lastName}</h1>
 
-                <div className="mt-5 bg-gradient-to-b from-blue-800 to-blue-900 rounded p-2 pb-4 shadow-2xl">
+                <div className="text-white mt-5 bg-gradient-to-b from-blue-800 to-blue-900 rounded p-2 pb-4 shadow-2xl">
                     <h1 className=" font-semibold">Edit Profile</h1><br></br>
 
-                    <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 justify-items-center rounded">
+                    <form className="grid grid-cols-1 gap-3 justify-items-center rounded">
 
                         <div className="mt-2">
                         <label className="ml-2">First Name : </label><br></br>
@@ -109,11 +109,11 @@ function StaffProfile({user}){
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 justify-items-center">
-                <div className="bg-sky-600 grid grid-cols-1 justify-items-center  mt-5 rounded p-2 pb-4 shadow-2xl lg:w-100 ">
+                <div className="bg-sky-500 p-2 mt-3 m-1 rounded text-white flex justify-center">
+                <div className="">
                     <h1 className="font-semibold">Manage Specialties</h1><br></br>
 
-                    <div className=" bg-gradient-to-b from-blue-800 to-blue-900 rounded p-4 pb-4 w-85 ">
+                    <div className=" bg-gradient-to-b from-blue-800 to-blue-900 rounded p-4 pb-4  ">
                     {user.specialty && user.specialty.map(i => {
                         return (
                             <>

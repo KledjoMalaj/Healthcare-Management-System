@@ -109,6 +109,14 @@ function StaffPatients({user}) {
                                 </div><br></br>
 
                                 <div>
+                                    <label className="text-gray-600" >Set Time:</label>
+                                    <input className="ml-2 text-gray-600 bg-white rounded border"
+                                           {...register("time",{required:true})}
+                                           type="text"/>
+                                    {errors.time && <span>{errors.time.message}</span>}
+                                </div><br></br>
+
+                                <div>
                                     <label className="text-gray-600">Reason :</label><br></br>
                                     <input className="m-3 rounded h-30 w-60 bg-white border text-gray-600"
                                         {...register("reason",{required:true})}
