@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import StaffRoutes from "./routes/StaffRoutes.js";
 import PatientRoutes from "./routes/PatientRoutes.js";
 import AppointmentRoutes from "./routes/AppointmentRoutes.js";
+import MedicalRecordsRoutes from "./routes/MedicalRecordsRoutes.js";
 import cors from "cors";
 
 const app = express();
@@ -25,6 +26,7 @@ mongoose.connection.on("error", err => console.error("MongoDB connection error:"
 app.use("/staff", StaffRoutes);
 app.use("/patient", PatientRoutes);
 app.use("/appointment", AppointmentRoutes)
+app.use("/medicalRecords", MedicalRecordsRoutes)
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

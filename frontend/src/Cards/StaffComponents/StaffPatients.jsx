@@ -9,7 +9,7 @@ function StaffPatients({user}) {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [Card,setCard] = useState("normal")
-    const [Patient,setPatient] = useState("")
+    const [Patient,setPatient] = useState([])
     const [PatientId,setPatientId] = useState("")
 
     const {handleSubmit,
@@ -49,41 +49,46 @@ function StaffPatients({user}) {
                 <h1>Patients</h1>
 
 
-            <div className="p-4">
+            <div className="p-4 text-center">
                 <input
                     type="text"
                     value={query}
                     onChange={handleSearch}
                     placeholder="Search patients by name, email, insurance..."
-                    className="w-full max-w-md px-3 py-2 border rounded shadow"
+                    className="w-full max-w-md px-3 py-2 border rounded shadow "
                 />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2">
+                <div className=" mt-5">
                 {results.length > 0 && (
-                    <div className="bg-blue-900 rounded mt-2 max-w-md  p-1 space-y-2">
+                    <div className="bg-blue-900 rounded mt-2 p-1 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                         {results.map((p) => (
                             <div
                                 key={p._id}
-                                className="px-3 py-2 rounded bg-gray-300 hover:bg-gray-200">
-                                <div className="flex gap-2 text-gray-600 ">
+                                className=" m-2 rounded bg-white hover:m-1 transition-all duration-200 ease-in-out transform -translate-x-1/200">
+                                <div className="bg-gradient-to-r from-blue-700 to-sky-500  p-4 ">
+                                    <div className="flex gap-2 ">
                                     <UserCircleIcon className="h-8 w-8"/>
                                     <div className="text-xl font-bold">
                                     {p.firstName} {p.lastName}
                                     </div>
+                                    </div>
                                 </div>
-                                <div className="text-gray-600 mt-2">
-                                    Date Of birth : {new Date(p.dateOfBirth).toLocaleDateString()} <br />
-                                    {p.contact?.email}
+                                <div className="text-gray-600 mt-2 flex justify-between px-4">
+                                    <h1>Date Of birth : </h1>{new Date(p.dateOfBirth).toLocaleDateString()}
+                                </div>
+                                <div className="text-gray-600 mt-2 flex justify-between px-4">
+                                    <h1>Email :</h1> {p.email}
                                 </div>
 
-                                <div className="flex flex-wrap gap-4 mt-2">
-                                    <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-800 hover:bg-emerald-600 rounded"
-                                    onClick={()=>{setCard("Appointment"), setPatient(p.firstName), setPatientId(p._id)}}>
+                                <div className="flex flex-wrap gap-4 mt-2 p-4">
+                                    <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-100 hover:bg-emerald-600 rounded"
+                                    onClick={()=>{setCard("Appointment"), setPatient([p.firstName,p.lastName]), setPatientId(p._id)}}>
                                         <CalendarDaysIcon className="h-6 w-6" />
                                         Appointment
                                     </button>
 
-                                    <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-800 hover:bg-sky-600 rounded">
+                                    <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-100 hover:bg-sky-600 rounded"
+                                    onClick={()=>{setCard("MedicalHistory")}}>
                                         <IdentificationIcon className="h-6 w-6" />
                                         Medical History
                                     </button>
@@ -92,11 +97,13 @@ function StaffPatients({user}) {
                         ))}
                     </div>
                 )}
+                    <br></br>
 
                 {Card === "Appointment" &&
                     <>
-                        <div className="bg-blue-950 rounded mt-2 max-w-md shadow-2xl p-1 space-y-2">
-                            <h1 className="m-3">Add Appointment for {Patient}</h1>
+                        <div className="flex justify-center">
+                        <div className="bg-blue-950 rounded mt-2 shadow-2xl p-1  w-full">
+                            <h1 className="m-3">Add Appointment for {Patient[0]} {Patient[1]}</h1>
 
                             <form className="text-center m-3 bg-gray-300 rounded p-3" onSubmit={handleSubmit(onSubmit)}>
 
@@ -127,8 +134,14 @@ function StaffPatients({user}) {
                                 <button className="submit" type="submit">Add</button>
                             </form>
                         </div>
+                        </div>
                     </>
                 }
+                    {Card === "MedicalHistory" &&
+                    <>
+                        <h1>Hello</h1>
+                    </>
+                    }
                 </div>
             </div>
             </div>

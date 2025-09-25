@@ -46,7 +46,8 @@ body {
     transition-all duration-100 ease-in-out transform -translate-x-1/200;
 }
 .menu-staff{
-    @apply fixed inset-y-0 left-0 w-70 bg-blue-600 border text-white p-1 z-50 m-2 rounded shadow-2xl
+    @apply fixed inset-y-0 left-0 w-70 border text-white p-1 z-50 m-2 rounded shadow-2xl
+    bg-gradient-to-b from-blue-500 to-blue-700
 }
 .edit-form{
     @apply text-center rounded mt-0.5 mx-2 py-0.5 px-7 bg-gray-100 text-black
