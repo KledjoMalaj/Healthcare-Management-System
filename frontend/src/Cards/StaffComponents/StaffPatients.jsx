@@ -4,8 +4,12 @@ import {CalendarDaysIcon} from "@heroicons/react/16/solid/index.js";
 import {IdentificationIcon} from "@heroicons/react/16/solid/index.js";
 import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
 import {useForm} from "react-hook-form";
+import MedicalHistory from "./StaffExtras/MedicalHistory.jsx";
+import {useNavigate} from "react-router-dom";
 
 function StaffPatients({user}) {
+    const navigate = useNavigate()
+
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [Card,setCard] = useState("normal")
@@ -45,7 +49,7 @@ function StaffPatients({user}) {
 
     return (
         <>
-            <div className="m-1 text-white bg-blue-900 rounded p-2.5">
+            <div className="m-1 text-white rounded p-2.5 bg-gradient-to-b from-blue-700 to-blue-800">
                 <h1>Patients</h1>
 
 
@@ -60,11 +64,11 @@ function StaffPatients({user}) {
 
                 <div className=" mt-5">
                 {results.length > 0 && (
-                    <div className="bg-blue-900 rounded mt-2 p-1 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+                    <div className="border bg-blue-900 rounded mt-2 p-2 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                         {results.map((p) => (
                             <div
                                 key={p._id}
-                                className=" m-2 rounded bg-white hover:m-1 transition-all duration-200 ease-in-out transform -translate-x-1/200">
+                                className=" m-2 rounded bg-white hover:mt-1.5 hover:ml-1 hover:mr-1 transition-all duration-200 ease-in-out transform -translate-x-1/200">
                                 <div className="bg-gradient-to-r from-blue-700 to-sky-500  p-4 ">
                                     <div className="flex gap-2 ">
                                     <UserCircleIcon className="h-8 w-8"/>
@@ -74,10 +78,12 @@ function StaffPatients({user}) {
                                     </div>
                                 </div>
                                 <div className="text-gray-600 mt-2 flex justify-between px-4">
-                                    <h1>Date Of birth : </h1>{new Date(p.dateOfBirth).toLocaleDateString()}
+                                    <h1>Date Of birth : </h1>
+                                    <h1 className="font-semibold">{new Date(p.dateOfBirth).toLocaleDateString()}</h1>
                                 </div>
                                 <div className="text-gray-600 mt-2 flex justify-between px-4">
-                                    <h1>Email :</h1> {p.email}
+                                    <h1>Email :</h1>
+                                   <h1 className="font-semibold"> {p.email} </h1>
                                 </div>
 
                                 <div className="flex flex-wrap gap-4 mt-2 p-4">
@@ -88,7 +94,7 @@ function StaffPatients({user}) {
                                     </button>
 
                                     <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-100 hover:bg-sky-600 rounded"
-                                    onClick={()=>{setCard("MedicalHistory")}}>
+                                    onClick={()=> {navigate(`/Staff/MedicalHistory/${p._id}`)}}>
                                         <IdentificationIcon className="h-6 w-6" />
                                         Medical History
                                     </button>
@@ -102,7 +108,7 @@ function StaffPatients({user}) {
                 {Card === "Appointment" &&
                     <>
                         <div className="flex justify-center">
-                        <div className="bg-blue-950 rounded mt-2 shadow-2xl p-1  w-full">
+                        <div className="bg-blue-900 border rounded mt-2 shadow-2xl p-1  w-full">
                             <h1 className="m-3">Add Appointment for {Patient[0]} {Patient[1]}</h1>
 
                             <form className="text-center m-3 bg-gray-300 rounded p-3" onSubmit={handleSubmit(onSubmit)}>
@@ -137,11 +143,6 @@ function StaffPatients({user}) {
                         </div>
                     </>
                 }
-                    {Card === "MedicalHistory" &&
-                    <>
-                        <h1>Hello</h1>
-                    </>
-                    }
                 </div>
             </div>
             </div>

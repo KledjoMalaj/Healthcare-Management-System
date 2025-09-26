@@ -7,6 +7,7 @@ import LogInPatient from "./Pages/LogInPages/LogInpatient.jsx";
 import RegisterPatient from "./Pages/RegisterPages/RegisterPatien.jsx";
 import StaffPage from "./Pages/StaffPage.jsx";
 import PatientPage from "./Pages/PatientPage.jsx";
+import MedicalHistory from "./Cards/StaffComponents/StaffExtras/MedicalHistory.jsx";
 
 function App() {
 
@@ -14,13 +15,14 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route path="/" element={<HomePage/>} />
-            <Route path="/LogIn/Staff" element={<LogInStaff/>} />
-            <Route path="/Register/Staff" element={<RegisterStaff/>} />
-            <Route path="/LogIn/Patient" element={<LogInPatient/>} />
-            <Route path="/Register/Patient" element={<RegisterPatient/>} />
-            <Route path="/StaffPage" element={<StaffPage/>} />
-            <Route path="/PatientPage" element={<PatientPage/>}/>
+              <Route path="/" element={<HomePage/>} />
+              <Route path="/LogIn/Staff" element={<LogInStaff/>} />
+              <Route path="/Register/Staff" element={<RegisterStaff/>} />
+              <Route path="/LogIn/Patient" element={<LogInPatient/>} />
+              <Route path="/Register/Patient" element={<RegisterPatient/>} />
+              <Route path="/StaffPage" element={<StaffPage/>} />
+              <Route path="/PatientPage" element={<PatientPage/>}/>
+              <Route path="/Staff/MedicalHistory/:id" element={<MedicalHistory/>}></Route>
           </Routes>
         </div>
       </Router>
