@@ -20,7 +20,7 @@ router.get("/:id",async (req,res)=>{
     const {id} = req.params
     try{
         const MedicalRecords = await MedicalRecord.find({patientId:id})
-            .populate("providerId","firstName lastName role")
+            .populate("providerId patientId","firstName lastName role")
         res.json(MedicalRecords)
     }catch (err) {
         res.status(500).json({message:err.message})
