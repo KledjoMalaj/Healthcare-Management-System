@@ -10,6 +10,8 @@ function MedicalHistory(){
     const {id} = useParams()
     const location = useLocation()
     const providerId = location.state?.providerId
+    const patientName = location.state?.patientName
+    const patientLastName = location.state?.patientLastName
     const [medicalRecords, setMedicalRecords] = useState([])
 
     useEffect(() => {
@@ -31,7 +33,7 @@ function MedicalHistory(){
                     <div>
                     {medicalRecords &&
                     <>
-                        <h1 className="font-bold text-2xl">{medicalRecords[0]?.patientId?.firstName} {medicalRecords[0]?.patientId?.lastName} - Medical Records</h1>
+                        <h1 className="font-bold text-2xl"> {patientName} {patientLastName} - Medical Records</h1>
                         <h1 className="mt-2">Patient ID : {id}</h1>
                     </>
                     }
@@ -45,7 +47,7 @@ function MedicalHistory(){
                 <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 rounded m-2 p-2 bg-white">
                     <div>
                         {medicalRecords && medicalRecords.map(i=>
-                            <div key={i._id} className="rounded p-4 border m-5 border-blue-600 bg-white hover:mt-1 hover:bg-gray-100 hover:shadow-2xl transition-all duration-250 ease-in-out">
+                            <div key={i._id} className="rounded p-4 border m-5 border-blue-600 bg-white hover:bg-gray-100 hover:shadow-2xl transition-all duration-250 ease-in-out">
                         <div className="flex justify-between">
                             <h1 className="font-semibold text-xl">{dayjs(i.visitDate).format("MMMM D , YYYY")}</h1>
                             <h1 className="rounded-4xl px-5 py-1 bg-blue-200 text-blue-600 font-semibold">{i.visitType}</h1>
@@ -68,7 +70,9 @@ function MedicalHistory(){
                     </div>
                 )}
                 </div>
+                    <div className={"border m-5 rounded border-blue-700 h-135"}>
 
+                    </div>
                 </div>
             </div>
         </>
