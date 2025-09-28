@@ -13,15 +13,19 @@ function MedicalHistory(){
     const patientName = location.state?.patientName
     const patientLastName = location.state?.patientLastName
     const [medicalRecords, setMedicalRecords] = useState([])
+    const [medication,setMedication] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:3030/medicalRecords/${id}`)
             .then((res)=>{
                 setMedicalRecords(res.data)
             })
+
+        axios.get(`http://localhost:3030/medication/${id}`)
+            .then((res)=>{
+                setMedication(res.data)
+            })
     }, []);
-
-
 
     return (
         <>
@@ -47,7 +51,7 @@ function MedicalHistory(){
                 <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 rounded m-2 p-2 bg-white">
                     <div>
                         {medicalRecords && medicalRecords.map(i=>
-                            <div key={i._id} className="rounded p-4 border m-5 border-blue-600 bg-white hover:bg-gray-100 hover:shadow-2xl transition-all duration-250 ease-in-out">
+                            <div key={i._id} className="rounded p-4 border m-5 border-blue-600 bg-white  hover:shadow-xl transition-all duration-250 ease-in-out">
                         <div className="flex justify-between">
                             <h1 className="font-semibold text-xl">{dayjs(i.visitDate).format("MMMM D , YYYY")}</h1>
                             <h1 className="rounded-4xl px-5 py-1 bg-blue-200 text-blue-600 font-semibold">{i.visitType}</h1>
@@ -70,9 +74,34 @@ function MedicalHistory(){
                     </div>
                 )}
                 </div>
-                    <div className={"border m-5 rounded border-blue-700 h-135"}>
+                    <div className={"border m-5 p-5 rounded border-blue-700"}>
+                        <div className={"bg-blue-300 rounded p-2 m-2"}>
+                            <h1 className={"text-blue-800 font-semibold text-lg pb-5"}>Latest Vital Signs</h1>
+                            <div className={"bg-white p-2 rounded"}>
+                                <h1>Blood Pressure : </h1>
+                                <h1>Heart Rate : </h1>
+                                <h1>Temperature : </h1>
+                                <h1>Weight : </h1>
+                                <h1>Last Updated : </h1>
+                            </div>
+                        </div>
 
+                        <div className={"bg-orange-300 rounded p-2 m-2"}>
+                            <h1 className={"text-orange-800 font-semibold text-lg pb-5"}>Current Medication</h1>
+                            {medication && medication.map(i=>
+                            <div key={i._id} className={"bg-white p-4 rounded"}>
+                                <div className={"flex justify-between mb-2"}>
+                                    <h1 className={"text-xl font-semibold"}>{i.medicationName}</h1>
+                                    <h1 className={"font-semibold border border-orange-500 rounded-4xl px-4 bg-orange-200 text-orange-700"}>{i.status}</h1>
+                                </div>
+                                <h1>Dr. {i.providerId.firstName} {i.providerId.lastName} {i.providerId.role}</h1>
+                                <h1>Dosage : {i.dosage}</h1>
+                                <h1>Frequency : {i.frequency}</h1>
+                            </div>
+                            )}
+                        </div>
                     </div>
+
                 </div>
             </div>
         </>
