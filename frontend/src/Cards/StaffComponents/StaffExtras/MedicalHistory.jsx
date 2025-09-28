@@ -1,11 +1,15 @@
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import dayjs from "dayjs";
 import axios from "axios";
 import {PlusIcon} from "@heroicons/react/16/solid/index.js";
+import PopUpForm from "./PopUpForm.jsx";
 
 function MedicalHistory(){
+    const [pupUp,setPopup] = useState(false)
     const {id} = useParams()
+    const location = useLocation()
+    const providerId = location.state?.providerId
     const [medicalRecords, setMedicalRecords] = useState([])
 
     useEffect(() => {
@@ -15,8 +19,12 @@ function MedicalHistory(){
             })
     }, []);
 
+
+
     return (
         <>
+            {pupUp && <PopUpForm onClose={()=>setPopup(false)} StaffId={providerId} PatientId={id} />}
+
             <div className="mt-2">
                 <div className="Home-Component2 ">
                     <div className="flex justify-between">
@@ -28,13 +36,16 @@ function MedicalHistory(){
                     </>
                     }
                     </div>
-                    <button className="rounded-4xl px-5 bg-blue-800 cursor-pointer hover:bg-blue-500 hover:rounded-xl transition-all duration-250 ease-in-out  "><PlusIcon className="h-6 w-6"/></button>
+                    <button className="rounded-4xl px-5 bg-blue-800 cursor-pointer hover:bg-blue-500 hover:rounded-xl transition-all duration-250 ease-in-out"
+                    onClick={()=>{setPopup(true)}} >
+                        <PlusIcon className="h-6 w-6"/></button>
                     </div>
                 </div>
 
                 <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 rounded m-2 p-2 bg-white">
-                {medicalRecords && medicalRecords.map(i=>
-                    <div key={i._id} className="rounded p-4 border border-blue-600 bg-white hover:mt-1 hover:bg-gray-100 hover:shadow-2xl transition-all duration-250 ease-in-out">
+                    <div>
+                        {medicalRecords && medicalRecords.map(i=>
+                            <div key={i._id} className="rounded p-4 border m-5 border-blue-600 bg-white hover:mt-1 hover:bg-gray-100 hover:shadow-2xl transition-all duration-250 ease-in-out">
                         <div className="flex justify-between">
                             <h1 className="font-semibold text-xl">{dayjs(i.visitDate).format("MMMM D , YYYY")}</h1>
                             <h1 className="rounded-4xl px-5 py-1 bg-blue-200 text-blue-600 font-semibold">{i.visitType}</h1>
@@ -56,7 +67,8 @@ function MedicalHistory(){
                         </div>
                     </div>
                 )}
-                    <div></div>
+                </div>
+
                 </div>
             </div>
         </>

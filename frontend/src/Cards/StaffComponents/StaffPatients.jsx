@@ -4,7 +4,6 @@ import {CalendarDaysIcon} from "@heroicons/react/16/solid/index.js";
 import {IdentificationIcon} from "@heroicons/react/16/solid/index.js";
 import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
 import {useForm} from "react-hook-form";
-import MedicalHistory from "./StaffExtras/MedicalHistory.jsx";
 import {useNavigate} from "react-router-dom";
 
 function StaffPatients({user}) {
@@ -94,7 +93,7 @@ function StaffPatients({user}) {
                                     </button>
 
                                     <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-100 hover:bg-sky-600 rounded"
-                                    onClick={()=> {navigate(`/Staff/MedicalHistory/${p._id}`)}}>
+                                    onClick={()=> {navigate(`/Staff/MedicalHistory/${p._id}`,{state : {providerId:user._id}})}}>
                                         <IdentificationIcon className="h-6 w-6" />
                                         Medical History
                                     </button>
