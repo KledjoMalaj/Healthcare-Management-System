@@ -4,10 +4,10 @@ import MedicalRecord from "../models/MedicalRecordsModel.js";
 const router = express.Router();
 
 router.post("/add",async (req,res)=>{
-    const {patientId,providerId,visitDate,visitType,bloodPressure,heartRate,temperature,wight,symptoms,diagnosis,notes} = req.body
+    const {patientId,providerId,visitDate,visitType,symptoms,diagnosis,notes} = req.body
     try {
         const newMedicalRecord = new MedicalRecord({
-            patientId,providerId,visitDate,visitType,bloodPressure,heartRate,temperature,wight,symptoms,diagnosis,notes
+            patientId,providerId,visitDate,visitType,symptoms,diagnosis,notes
         })
         await newMedicalRecord.save();
         res.status(201).json({message:"Medical Record Added"})

@@ -1,0 +1,65 @@
+import {XMarkIcon} from "@heroicons/react/16/solid/index.js";
+import {useForm} from "react-hook-form";
+import axios from "axios";
+
+function AddVitalSigns({onClose, StaffId, PatientId}){
+
+    const {register,
+    handleSubmit} = useForm()
+
+    const onSubmit = (data) => {
+        const providerId = StaffId
+        const patientId = PatientId
+        const formData = {...data,providerId,patientId}
+        console.log(formData)
+        axios.post('http://localhost:3030/vitalSigns/add', formData)
+            .then((res)=>{
+                onClose()
+            })
+    }
+
+    return (
+        <>
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <div className="bg-white p-5 lg:w-110 sm:w-100 shadow-lg rounded">
+                    <div className="flex justify-between">
+                    <h1 className="text-xl">Add Vital Signs</h1>
+                    <button onClick={onClose}
+                        className="cursor-pointer"><XMarkIcon className="h-9 w-9 text-blue-600 hover:text-blue-900"/>
+                    </button>
+                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)} className={"mt-5 border rounded p-3"}>
+                        <div className={"flex justify-between"}>
+                            <label>Blood Pressure : </label>
+                            <input className="input-login" type="text" placeholder="Enter Blood Pressure"
+                                   {...register('bloodPressure',{required:true})}
+                            ></input>
+                        </div><br></br>
+                        <div className={"flex justify-between"}>
+                            <label>Heart Rate : </label>
+                            <input className="input-login" type="text" placeholder="Enter Heart Rate"
+                                   {...register('heartRate',{required:true})}
+                            ></input>
+                        </div><br></br>
+                        <div className={"flex justify-between"}>
+                            <label>Temperature : </label>
+                            <input className="input-login" type="text" placeholder="Enter Temperature"
+                                   {...register('temperature',{required:true})}
+                            ></input>
+                        </div><br></br>
+                        <div className={"flex justify-between"}>
+                            <label>Weight : </label>
+                            <input className="input-login" type="text" placeholder="Enter Weight"
+                                   {...register('weight',{required:true})}
+                            ></input>
+                        </div><br></br>
+                        <div className={"flex justify-center mt-2 "}>
+                            <button className={"bg-blue-300 rounded text-blue-700 font-semibold w-50 cursor-pointer h-8"} type={"submit"}>Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </>
+    )
+}
+export default AddVitalSigns

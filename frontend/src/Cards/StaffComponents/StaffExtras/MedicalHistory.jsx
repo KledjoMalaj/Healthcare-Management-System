@@ -4,6 +4,8 @@ import dayjs from "dayjs";
 import axios from "axios";
 import {PlusIcon} from "@heroicons/react/16/solid/index.js";
 import PopUpForm from "./PopUpForm.jsx";
+import AddVitalSigns from "./AddVitalSigns.jsx";
+import UpdateVitalSigns from "./UpdateVitalSigns.jsx";
 
 function MedicalHistory(){
     const [pupUp,setPopup] = useState(false)
@@ -14,6 +16,10 @@ function MedicalHistory(){
     const patientLastName = location.state?.patientLastName
     const [medicalRecords, setMedicalRecords] = useState([])
     const [medication,setMedication] = useState([])
+    const [vitalSigns,setVitalSigns] = useState([])
+
+    const [addVitalSigns,setAddVitalSigns] = useState(false)
+    const [updateVitalSigns,setUpdateVitalSigns] = useState(false)
 
     useEffect(() => {
         axios.get(`http://localhost:3030/medicalRecords/${id}`)
@@ -25,11 +31,18 @@ function MedicalHistory(){
             .then((res)=>{
                 setMedication(res.data)
             })
+
+        axios.get(`http://localhost:3030/vitalSigns/${id}`)
+            .then((res)=>{
+                setVitalSigns(res.data)
+            })
     }, []);
 
     return (
         <>
-            {pupUp && <PopUpForm onClose={()=>setPopup(false)} StaffId={providerId} PatientId={id} />}
+            {pupUp && <PopUpForm onClose={()=> setPopup(false)} StaffId={providerId} PatientId={id} />}
+            {addVitalSigns && <AddVitalSigns onClose={() => setAddVitalSigns(false)} StaffId={providerId} PatientId={id}/>}
+            {updateVitalSigns && <UpdateVitalSigns onClose={()=>setUpdateVitalSigns(false)} StaffId={providerId} PatientId={id}/>}
 
             <div className="mt-2">
                 <div className="Home-Component2 ">
@@ -76,18 +89,35 @@ function MedicalHistory(){
                 </div>
                     <div className={"border m-5 p-5 rounded border-blue-700"}>
                         <div className={"bg-blue-300 rounded p-2 m-2"}>
-                            <h1 className={"text-blue-800 font-semibold text-lg pb-5"}>Latest Vital Signs</h1>
+                            <div className={"flex justify-between"}>
+                            <h1 className={"text-blue-800 font-semibold text-lg pb-4"}>Latest Vital Signs</h1>
+
+                                {vitalSigns.length === 0 ? (
+                                <button className={"m-2 rounded-4xl font-semibold text-lg border-blue-600 bg-blue-400 border px-4 cursor-pointer text-blue-800"}
+                                onClick={()=>setAddVitalSigns(true)}>
+                                    Add</button>
+                                    ) : (
+                                <button className={"m-2 rounded-4xl font-semibold text-lg border-blue-600 bg-blue-400 border px-4 cursor-pointer text-blue-800"}
+                                onClick={()=>setUpdateVitalSigns(true)}>
+                                Update</button>
+                                    )}
+
+                            </div>
                             <div className={"bg-white p-2 rounded"}>
-                                <h1>Blood Pressure : </h1>
-                                <h1>Heart Rate : </h1>
-                                <h1>Temperature : </h1>
-                                <h1>Weight : </h1>
-                                <h1>Last Updated : </h1>
+                                {vitalSigns && vitalSigns.map(i=>
+                                    <div>
+                                        <h1>Blood Pressure : {i.bloodPressure}</h1>
+                                        <h1>Heart Rate : {i.heartRate}</h1>
+                                        <h1>Temperature : {i.temperature}</h1>
+                                        <h1>Weight : {i.weight}</h1>
+                                        <h1>Last Updated : {dayjs(i.lastUpdated).format('MMMM D YYYY')}</h1>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
                         <div className={"bg-orange-300 rounded p-2 m-2"}>
-                            <h1 className={"text-orange-800 font-semibold text-lg pb-5"}>Current Medication</h1>
+                            <h1 className={"text-orange-800 font-semibold text-lg pb-4"}>Current Medication</h1>
                             {medication && medication.map(i=>
                             <div key={i._id} className={"bg-white p-4 rounded"}>
                                 <div className={"flex justify-between mb-2"}>

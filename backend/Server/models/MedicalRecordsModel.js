@@ -21,11 +21,6 @@ const MedicalRecordsSchema = new mongoose.Schema({
         required:true
     },
 
-    bloodPressure: String,
-    heartRate: String,
-    temperature: String,
-    weight: String,
-
     symptoms: String,
     diagnosis: String,
     notes: String,
