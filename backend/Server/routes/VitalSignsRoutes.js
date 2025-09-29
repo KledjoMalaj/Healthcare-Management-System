@@ -1,4 +1,4 @@
-import express from "express";
+import express, {response} from "express";
 import VitalSigns from "../models/VitalSignsModel.js";
 
 const router = express.Router();
@@ -22,6 +22,17 @@ router.get('/:id', async (req,res)=>{
         const vitalSigns = await VitalSigns.find({patientId:id})
         res.json(vitalSigns)
     }catch (err) {
+        res.status(500).json({message:err.message})
+    }
+})
+
+router.patch('/edit/:id',async (req,res)=>{
+    const {id} = req.params
+    const update = req.body
+    try{
+        await VitalSigns.findOneAndUpdate({patientId:id} , update,{new:true})
+        res.status(200).json({message:"Update Success"})
+    }catch(err){
         res.status(500).json({message:err.message})
     }
 })
