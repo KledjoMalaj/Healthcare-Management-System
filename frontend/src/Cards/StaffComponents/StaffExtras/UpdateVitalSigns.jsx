@@ -5,8 +5,13 @@ function UpdateVitalSigns({onClose, PatientId}){
     const {register,handleSubmit} = useForm()
 
 
+    const lastUpdated = Date.now()
     const onSubmit = (data) => {
-        axios.patch(`http://localhost:3030/vitalSigns/edit/${PatientId}`, data)
+        const formData= {...data,lastUpdated}
+        axios.patch(`http://localhost:3030/vitalSigns/edit/${PatientId}`, formData)
+            .then((res)=>{
+                onClose()
+            })
     }
 
     return(

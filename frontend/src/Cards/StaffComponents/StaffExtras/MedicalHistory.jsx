@@ -93,11 +93,11 @@ function MedicalHistory(){
                             <h1 className={"text-blue-800 font-semibold text-lg pb-4"}>Latest Vital Signs</h1>
 
                                 {vitalSigns.length === 0 ? (
-                                <button className={"m-2 rounded-4xl font-semibold text-lg border-blue-600 bg-blue-400 border px-4 cursor-pointer text-blue-800"}
+                                <button className={"m-2 rounded-4xl font-semibold text-lg border-blue-600 bg-blue-400 border px-4 cursor-pointer text-blue-800 hover:bg-blue-200"}
                                 onClick={()=>setAddVitalSigns(true)}>
                                     Add</button>
                                     ) : (
-                                <button className={"m-2 rounded-4xl font-semibold text-lg border-blue-600 bg-blue-400 border px-4 cursor-pointer text-blue-800"}
+                                <button className={"m-2 rounded-4xl font-semibold text-lg border-blue-600 bg-blue-400 border px-4 cursor-pointer text-blue-800 hover:bg-blue-200"}
                                 onClick={()=>setUpdateVitalSigns(true)}>
                                 Update</button>
                                     )}
@@ -106,11 +106,15 @@ function MedicalHistory(){
                             <div className={"bg-white p-2 rounded"}>
                                 {vitalSigns && vitalSigns.map(i=>
                                     <div>
-                                        <h1>Blood Pressure : {i.bloodPressure}</h1>
-                                        <h1>Heart Rate : {i.heartRate}</h1>
-                                        <h1>Temperature : {i.temperature}</h1>
-                                        <h1>Weight : {i.weight}</h1>
-                                        <h1>Last Updated : {dayjs(i.lastUpdated).format('MMMM D YYYY')}</h1>
+                                        <h1 className={"flex justify-between m-3"}><h1 className={"text-gray-500"}>Blood Pressure </h1>  <h1 className={"font-bold text-green-600"}>{i.bloodPressure}</h1></h1>
+                                        <hr></hr>
+                                        <h1 className={"flex justify-between m-3"}><h1 className={"text-gray-500"}>Heart Rate </h1> <h1 className={"font-bold text-green-600"}>{i.heartRate}</h1></h1>
+                                        <hr></hr>
+                                        <h1 className={"flex justify-between m-3"}><h1 className={"text-gray-500"}>Temperature </h1> <h1 className={"font-bold text-green-600"}>{i.temperature}</h1></h1>
+                                        <hr></hr>
+                                        <h1 className={"flex justify-between m-3"}><h1 className={"text-gray-500"}>Weight </h1> <h1 className={"font-bold text-green-600"}>{i.weight}</h1></h1>
+                                        <hr></hr>
+                                        <h1 className={"m-3 text-center text-xl"}>Last Updated : {dayjs(i.lastUpdated).format('MMMM D YYYY')}</h1>
                                     </div>
                                 )}
                             </div>
