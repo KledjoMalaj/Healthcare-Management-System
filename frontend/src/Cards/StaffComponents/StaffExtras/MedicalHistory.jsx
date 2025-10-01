@@ -42,7 +42,7 @@ function MedicalHistory(){
         <>
             {pupUp && <PopUpForm onClose={()=> setPopup(false)} StaffId={providerId} PatientId={id} />}
             {addVitalSigns && <AddVitalSigns onClose={() => setAddVitalSigns(false)} StaffId={providerId} PatientId={id}/>}
-            {updateVitalSigns && <UpdateVitalSigns onClose={()=>setUpdateVitalSigns(false)} StaffId={providerId} PatientId={id} id={vitalSigns._id}/>}
+            {updateVitalSigns && <UpdateVitalSigns onClose={()=>setUpdateVitalSigns(false)} StaffId={providerId} PatientId={id} id={vitalSigns._id} vitalSigns={vitalSigns}/>}
 
             <div className="mt-2">
                 <div className="Home-Component2 ">
