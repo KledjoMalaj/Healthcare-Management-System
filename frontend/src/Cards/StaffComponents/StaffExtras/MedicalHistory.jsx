@@ -123,7 +123,7 @@ function MedicalHistory(){
                         <div className={"bg-orange-300 rounded p-2 m-2"}>
                             <h1 className={"text-orange-800 font-semibold text-lg pb-4"}>Current Medication</h1>
                             {medication && medication.map(i=>
-                            <div key={i._id} className={"bg-white p-4 rounded"}>
+                            <div key={i._id} className={"bg-white p-4 rounded m-2"}>
                                 <div className={"flex justify-between mb-2"}>
                                     <h1 className={"text-xl font-semibold"}>{i.medicationName}</h1>
                                     <h1 className={"font-semibold border border-orange-500 rounded-4xl px-4 bg-orange-200 text-orange-700"}>{i.status}</h1>

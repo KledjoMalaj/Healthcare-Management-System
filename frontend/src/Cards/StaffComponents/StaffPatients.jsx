@@ -1,10 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import {CalendarDaysIcon} from "@heroicons/react/16/solid/index.js";
+import {CalendarDaysIcon, XMarkIcon} from "@heroicons/react/16/solid/index.js";
 import {IdentificationIcon} from "@heroicons/react/16/solid/index.js";
 import {UserCircleIcon} from "@heroicons/react/16/solid/index.js";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
+import {PlusCircleIcon} from "@heroicons/react/16/solid/index.js";
 
 function StaffPatients({user}) {
     const navigate = useNavigate()
@@ -40,6 +41,16 @@ function StaffPatients({user}) {
     const onSubmit = (formData) => {
         const data = {...formData,provider:user._id,patient:PatientId}
         axios.post('http://localhost:3030/appointment/add',data)
+            .then((res)=>{
+                console.log(res)
+                setCard("normal")
+            })
+    }
+
+    const onSubmit1 = (formData) => {
+        const data = {...formData,providerId:user._id,patientId:PatientId}
+
+        axios.post('http://localhost:3030/medication/add',data)
             .then((res)=>{
                 console.log(res)
                 setCard("normal")
@@ -92,12 +103,19 @@ function StaffPatients({user}) {
                                         Appointment
                                     </button>
 
-                                    <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-100 hover:bg-sky-600 rounded"
-                                    onClick={()=> {navigate(`/Staff/MedicalHistory/${p._id}`,{state : {providerId:user._id,patientName:p.firstName,patientLastName:p.lastName}})}}>
+                                    <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2 text-center hover:text-gray-100 hover:bg-orange-400 rounded"
+                                    onClick={()=>{setCard("Prescribe"), setPatient([p.firstName,p.lastName]), setPatientId(p._id)}}>
+                                        <PlusCircleIcon className={"h-6 w-6"}/>
+                                        Prescribe</button>
+                                </div>
+                                <div className={"flex justify-center mx-5 mb-2"}>
+                                    <button className="flex-1 flex gap-2 justify-center items-center text-gray-600 cursor-pointer p-2  text-center hover:text-gray-100 hover:bg-sky-600 rounded"
+                                            onClick={()=> {navigate(`/Staff/MedicalHistory/${p._id}`,{state : {providerId:user._id,patientName:p.firstName,patientLastName:p.lastName}})}}>
                                         <IdentificationIcon className="h-6 w-6" />
                                         Medical History
                                     </button>
                                 </div>
+
                             </div>
                         ))}
                     </div>
@@ -142,6 +160,45 @@ function StaffPatients({user}) {
                         </div>
                     </>
                 }
+
+                    {Card === "Prescribe" &&
+                    <>
+                          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 text-gray-800">
+                <div className="bg-white p-5 lg:w-150 md:w-120 sm:w-100 shadow-lg rounded">
+                    <div className="flex justify-between">
+                    <h1 className="text-xl">Add Prescription for {Patient[0]} {Patient[1]}</h1>
+                    <button onClick={()=>setCard("normal")}
+                        className="cursor-pointer"><XMarkIcon className="h-9 w-9 text-blue-600 hover:text-blue-900"/>
+                    </button>
+                    </div>
+                    <form onSubmit={handleSubmit(onSubmit1)} className={"mt-5 border rounded p-3"}>
+                        <div className={"flex justify-between"}>
+                            <label>Medication Name: </label>
+                            <input className="input-login" type="text" placeholder="Enter Medication Name"
+                                   {...register('medicationName',{required:true})}
+                            ></input>
+                        </div><br></br>
+                        <div className={"flex justify-between"}>
+                            <label>Dosage : </label>
+                            <input className="input-login" type="text" placeholder="Enter Dosage"
+                                   {...register('dosage',{required:true})}
+                            ></input>
+                        </div><br></br>
+                        <div className={"flex justify-between"}>
+                            <label>Frequency : </label>
+                            <input className="input-login" type="text" placeholder="Enter Frequency"
+                                   {...register('frequency',{required:true})}
+                            ></input>
+                        </div><br></br>
+
+                        <div className={"flex justify-center mt-2 "}>
+                            <button className={"bg-blue-300 rounded text-blue-700 font-semibold w-50 cursor-pointer h-8"} type={"submit"}>Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                    </>
+                    }
                 </div>
             </div>
             </div>
