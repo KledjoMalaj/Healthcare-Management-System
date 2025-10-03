@@ -124,13 +124,20 @@ function StaffPatients({user}) {
 
                 {Card === "Appointment" &&
                     <>
-                        <div className="flex justify-center">
-                        <div className="bg-blue-900 border rounded mt-2 shadow-2xl p-1  w-full">
-                            <h1 className="m-3">Add Appointment for {Patient[0]} {Patient[1]}</h1>
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 text-gray-800">
 
-                            <form className="text-center m-3 bg-gray-300 rounded p-3" onSubmit={handleSubmit(onSubmit)}>
+                        <div className="bg-white p-5 lg:w-120 md:w-120 sm:w-100 shadow-lg rounde">
 
-                                <div>
+                            <div className={"flex justify-between"}>
+                            <h1 className="m-3 text-xl">Add Appointment for {Patient[0]} {Patient[1]}</h1>
+                            <button onClick={()=>setCard("normal")}
+                                    className="cursor-pointer"><XMarkIcon className="h-9 w-9 text-blue-600 hover:text-blue-900"/>
+                            </button>
+                            </div>
+
+                            <form className="mt-5 border rounded p-3" onSubmit={handleSubmit(onSubmit)}>
+
+                                <div className={"flex justify-between"}>
                                 <label className="text-gray-600" >Set Date :</label>
                                 <input className="ml-2 text-gray-600"
                                        {...register("date",{required:true})}
@@ -138,7 +145,7 @@ function StaffPatients({user}) {
                                 {errors.date && <span>{errors.date.message}</span>}
                                 </div><br></br>
 
-                                <div>
+                                <div className={"flex justify-between"}>
                                     <label className="text-gray-600" >Set Time:</label>
                                     <input className="ml-2 text-gray-600 bg-white rounded border"
                                            {...register("time",{required:true})}
@@ -146,7 +153,7 @@ function StaffPatients({user}) {
                                     {errors.time && <span>{errors.time.message}</span>}
                                 </div><br></br>
 
-                                <div>
+                                <div className={"flex justify-between"}>
                                     <label className="text-gray-600">Reason :</label><br></br>
                                     <input className="m-3 rounded h-30 w-60 bg-white border text-gray-600"
                                         {...register("reason",{required:true})}
