@@ -6,12 +6,13 @@ import {ArrowLeftOnRectangleIcon, Bars3Icon} from "@heroicons/react/20/solid/ind
 import MenuPatient from "../Cards/MenuPatient.jsx";
 import PatientProfile from "../Cards/PatientComponents/PatientProfile.jsx";
 import PatientAppointments from "../Cards/PatientComponents/PatientAppointments.jsx";
+import PatientHome from "../Cards/PatientComponents/PatientHome.jsx";
 
 function PatientPage() {
     const navigate = useNavigate();
     const [patient, setPatient] = useState([]);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [page, setPage] = useState("home");
+    const [page, setPage] = useState("Home");
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
@@ -48,6 +49,7 @@ function PatientPage() {
 
             {page === "Profile" && <PatientProfile user={patient}/>}
             {page === "Appointments" && <PatientAppointments user={patient} />}
+            {page === "Home" && <PatientHome user={patient}/>}
         </>
     )
 }
