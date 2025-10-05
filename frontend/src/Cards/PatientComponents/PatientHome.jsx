@@ -9,7 +9,7 @@ function PatientHome({user}) {
     const [appointments, setAppointments] = useState([])
 
     const todayD = dayjs().format("dddd");
-    const todayDay = dayjs().format("D")
+    const todayDay = dayjs().format("DD")
     const todayM = dayjs().format("MM")
     const todayY = dayjs().format("YYYY")
 
@@ -56,17 +56,17 @@ function PatientHome({user}) {
                 </div>
 
                 <div className="bg-gray-200 rounded m-1 h-165 p-3">
-                    <div className={"Staff-Home text-center"}><h1 className={"font-semibold text-xl"}>Upcoming Appointments</h1>
+                    <div className={"Staff-Home text-center"}><h1 className={"font-semibold text-xl"}>Upcoming Appointments</h1></div>
                     <div className="mt-5 rounded p-0.5">
                         {appointments.map(i => (
-                            <div key={i._id} className="flex gap-4 hover:bg-blue-700 p-1 rounded justify-center">
-                                <h1>{i.patient.firstName}</h1>
-                                <h1>{i.patient.lastName}</h1>
+                            <div key={i._id} className="Home-Component4 flex justify-between">
+                                <h1>{i.provider.firstName}</h1>
+                                <h1>{i.provider.lastName}</h1>
+                                <h1>{dayjs(i.date).format("D / MM / YYYY")}</h1>
                                 <h1>{i.time}</h1>
                                 <h1>{i.status}</h1>
                             </div>
                         ))}
-                    </div>
                     </div>
                 </div>
 

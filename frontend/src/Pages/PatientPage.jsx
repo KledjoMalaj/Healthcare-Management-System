@@ -7,6 +7,7 @@ import MenuPatient from "../Cards/MenuPatient.jsx";
 import PatientProfile from "../Cards/PatientComponents/PatientProfile.jsx";
 import PatientAppointments from "../Cards/PatientComponents/PatientAppointments.jsx";
 import PatientHome from "../Cards/PatientComponents/PatientHome.jsx";
+import PatientBilling from "../Cards/PatientComponents/PatientBilling.jsx";
 
 function PatientPage() {
     const navigate = useNavigate();
@@ -50,6 +51,7 @@ function PatientPage() {
             {page === "Profile" && <PatientProfile user={patient}/>}
             {page === "Appointments" && <PatientAppointments user={patient} />}
             {page === "Home" && <PatientHome user={patient}/>}
+            {page === "Billing" && <PatientBilling user={patient}/>}
         </>
     )
 }

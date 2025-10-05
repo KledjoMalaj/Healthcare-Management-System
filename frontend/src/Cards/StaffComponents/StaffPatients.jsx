@@ -145,23 +145,38 @@ function StaffPatients({user}) {
                                 {errors.date && <span>{errors.date.message}</span>}
                                 </div><br></br>
 
-                                <div className={"flex justify-between"}>
+                                <div className={"flex justify-between "}>
                                     <label className="text-gray-600" >Set Time:</label>
-                                    <input className="ml-2 text-gray-600 bg-white rounded border"
+                                    <input className="ml-2  bg-white rounded border text-center"
                                            {...register("time",{required:true})}
-                                           type="text"/>
+                                           type="text" placeholder={"Set Time"}/>
                                     {errors.time && <span>{errors.time.message}</span>}
                                 </div><br></br>
 
                                 <div className={"flex justify-between"}>
+                                    <label className={"text-gray-600"}>Appointment Type:</label>
+                                    <select
+                                        className="ml-2 text-gray-600 bg-white rounded border px-9 py-0.5"
+                                        {...register('appointmentType', {required: true})}
+                                    >
+                                        <option value="">Select Type</option>
+                                        <option value="Check-up">Check-up</option>
+                                        <option value="Follow-up">Follow-up</option>
+                                        <option value="Consultation">Consultation</option>
+                                        <option value="Emergency">Emergency</option>
+                                        <option value="Procedure">Procedure</option>
+                                    </select>
+                                </div><br></br>
+
+                                <div className={"flex justify-between"}>
                                     <label className="text-gray-600">Reason :</label><br></br>
-                                    <input className="m-3 rounded h-30 w-60 bg-white border text-gray-600"
+                                    <input className="ml-2 rounded h-30 w-60 bg-white border text-gray-600"
                                         {...register("reason",{required:true})}
                                     ></input>
                                     {errors.reason && <span>{errors.reason.message}</span>}
                                 </div>
 
-                                <button className="submit" type="submit">Add</button>
+                                <button className="submit mt-4" type="submit">Add</button>
                             </form>
                         </div>
                         </div>

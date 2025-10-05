@@ -1,4 +1,4 @@
-import {CalendarDaysIcon} from "@heroicons/react/16/solid/index.js";
+import {CalendarDaysIcon, XMarkIcon} from "@heroicons/react/16/solid/index.js";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useForm} from "react-hook-form";
@@ -96,51 +96,74 @@ function PatientAppointments({user}){
                 </>
                 }
 
+
                 {page === "MakeAppointment" &&
                     <>
-                        <div className="bg-gray-300 rounded p-2 mt-2 shadow-2xl">
-                            <div className="flex justify-between">
-                                <div>
-                                    <h1 className="text-gray-600 font-semibold mt-2">Appointment form</h1>
-                                </div>
-                                <div>
-                                    <button className="py-1 px-5 rounded bg-red-700 cursor-pointer shadow"
-                                            onClick={()=>setPage("normal")}
-                                    >Close</button>
-                                </div>
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 text-gray-800">
+
+                        <div className="bg-white p-5 lg:w-120 md:w-120 sm:w-100 shadow-lg rounde">
+
+                            <div className={"flex justify-between"}>
+                            <button onClick={()=>setPage("normal")}
+                                    className="cursor-pointer"><XMarkIcon className="h-9 w-9 text-blue-600 hover:text-blue-900"/>
+                            </button>
                             </div>
 
-                            <div className="mt-2 flex justify-center">
-                                <form className="bg-white p-4 rounded text-gray-600 shadow-lg w-90" onSubmit={handleSubmit(onSubmit)}>
-                                    <div className="flex justify-between ">
+                            <form className="mt-5 border rounded p-3" onSubmit={handleSubmit(onSubmit)}>
+
+                                <div className="flex justify-between ">
                                     <label>Select Provider :</label>
-                                    <select className="text-white cursor-pointer text-center bg-gray-400 rounded p-1 w-40" {...register('provider',{required:true})}>
+                                    <select className="ml-2 text-gray-600 bg-white rounded border px-2 py-0.5"
+                                            {...register('provider',{required:true})}>
                                         <option> Choose Provider </option>
                                         {providers && providers.map((i)=>
                                             <option key={i._id} value={i._id}>{i.firstName} {i.lastName} {i.role}</option>
                                         )}
                                     </select>
-                                    </div>
-                                    <div className="flex justify-between mt-4">
-                                        <label>Select Date :</label>
-                                        <input className="bg-gray-400 text-white rounded p-1 w-40" {...register('date',{required:true})} type="date">
-                                        </input>
-                                    </div>
-                                    <div className="flex justify-between mt-4">
-                                        <label>Set Time :</label>
-                                        <input className="bg-gray-400 rounded p-1 w-40" {...register('time',{required:true})}>
-                                        </input>
-                                    </div>
-                                    <div className="flex justify-between mt-4">
-                                        <label>Reason :</label>
-                                        <input className="bg-gray-400 text-gray-700 text-center h-20 w-40 rounded" {...register('reason')} type="text"></input>
-                                    </div>
+                                </div><br></br>
 
-                                    <div className="flex justify-center">
-                                    <button className="mt-4 bg-emerald-600 shadow-lg px-15 py-1 rounded cursor-pointer text-white" type="submit">Book</button>
-                                    </div>
-                                </form>
-                            </div>
+                                <div className={"flex justify-between"}>
+                                <label className="text-gray-600" >Set Date :</label>
+                                <input className="ml-2 text-gray-600"
+                                       {...register("date",{required:true})}
+                                       type="date"/>
+                                {errors.date && <span>{errors.date.message}</span>}
+                                </div><br></br>
+
+                                <div className={"flex justify-between "}>
+                                    <label className="text-gray-600" >Set Time:</label>
+                                    <input className="ml-2  bg-white rounded border text-center"
+                                           {...register("time",{required:true})}
+                                           type="text" placeholder={"Set Time"}/>
+                                    {errors.time && <span>{errors.time.message}</span>}
+                                </div><br></br>
+
+                                <div className={"flex justify-between"}>
+                                    <label className={"text-gray-600"}>Appointment Type:</label>
+                                    <select
+                                        className="ml-2 text-gray-600 bg-white rounded border px-9 py-0.5"
+                                        {...register('appointmentType', {required: true})}
+                                    >
+                                        <option value="">Select Type</option>
+                                        <option value="Check-up">Check-up</option>
+                                        <option value="Follow-up">Follow-up</option>
+                                        <option value="Consultation">Consultation</option>
+                                        <option value="Emergency">Emergency</option>
+                                        <option value="Procedure">Procedure</option>
+                                    </select>
+                                </div><br></br>
+
+                                <div className={"flex justify-between"}>
+                                    <label className="text-gray-600">Reason :</label><br></br>
+                                    <input className="ml-2 rounded h-30 w-60 bg-white border text-gray-600"
+                                        {...register("reason",{required:true})}
+                                    ></input>
+                                    {errors.reason && <span>{errors.reason.message}</span>}
+                                </div>
+
+                                <button className="submit mt-4" type="submit">Add</button>
+                            </form>
+                        </div>
                         </div>
                     </>
                 }

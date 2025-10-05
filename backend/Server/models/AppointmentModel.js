@@ -7,6 +7,13 @@ const AppointmentSchema = new mongoose.Schema({
     time:{type:String, required: true},
     status:{type:String,default:'Scheduled'},
     reason:{type:String},
+
+    appointmentType: {
+        type: String,
+        required: true,
+        enum: ['Check-up', 'Follow-up', 'Consultation', 'Emergency', 'Procedure']
+    },
+
 }, {timestamps:true})
 
 const Appointment = mongoose.model("Appointment",AppointmentSchema)

@@ -6,6 +6,7 @@ import AppointmentRoutes from "./routes/AppointmentRoutes.js";
 import MedicalRecordsRoutes from "./routes/MedicalRecordsRoutes.js";
 import MedicationRoutes from "./routes/MedicationRoutes.js";
 import VitalSignsRoutes from "./routes/VitalSignsRoutes.js";
+import BillingRoutes from "./routes/BillingRoutes.js";
 import cors from "cors";
 
 const app = express();
@@ -31,6 +32,7 @@ app.use("/appointment", AppointmentRoutes)
 app.use("/medicalRecords", MedicalRecordsRoutes)
 app.use("/medication", MedicationRoutes)
 app.use("/vitalSigns", VitalSignsRoutes)
+app.use("/billing", BillingRoutes)
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
