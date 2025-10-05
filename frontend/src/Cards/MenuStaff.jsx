@@ -26,9 +26,7 @@ function MenuStaff({ onClose, setPage }) {
                 <button className="font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-gradient-to-r hover:from-blue-700 hover:to-sky-600"
                 onClick={() => { setPage("Appointments"); onClose()}}>
                     <ClipboardDocumentListIcon className="h-6 w-6"/> Appointments</button>
-                <button className="font-semibold hover:text-white flex gap-3 cursor-pointer px-4 py-2 m-1 rounded hover:bg-gradient-to-r hover:from-blue-700 hover:to-sky-600"
-                onClick={() => { setPage("Billing"); onClose() }}>
-                    <BanknotesIcon className="h-6 w-6"/>Billing</button>
+
             </nav>
         </div>
     );

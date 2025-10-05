@@ -81,7 +81,7 @@ router.patch("/confirm/:id", async (req, res) => {
                 const newBilling = new Billing({
                     patient: updatedAppointment.patient._id,
                     appointment: updatedAppointment._id,
-                    description: `Billing for ${type} appointment on ${updatedAppointment.date}`,
+                    description: `Billing for ${type} appointment `,
                     amount: amount,
                     amountPaid: 0,
                     paymentStatus: "Unpaid"
