@@ -2,7 +2,7 @@
 
 Modern full-stack MERN application for managing patients, staff, appointments, medications, medical records, and vital signs.
 
-## 🎯 Features
+## Features
 
 - **Patient Management** - Complete patient profiles with medical history
 - **Staff Management** - Healthcare provider accounts and credentials
@@ -12,7 +12,7 @@ Modern full-stack MERN application for managing patients, staff, appointments, m
 - **Vital Signs Monitoring** - Track and visualize patient vitals over time
 - **Secure Authentication** - JWT-based authentication and authorization
 
-## 📸 Screenshots
+## Screenshots
 
 ## Provider View
 
@@ -39,14 +39,14 @@ Modern full-stack MERN application for managing patients, staff, appointments, m
 ![PatientBilling](./screenshots/Patient_BillingPage.png)
 *Billings generated based on appointments the patient made after the provider confirms the appointment*
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React, Vite, Tailwind CSS
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB with Mongoose ODM
 - **Authentication**: JWT (JSON Web Tokens)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
@@ -77,7 +77,7 @@ Modern full-stack MERN application for managing patients, staff, appointments, m
       └─ assets/
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Install dependencies
@@ -94,7 +94,7 @@ cd frontend && npm run dev
 Backend: `http://localhost:3030`  
 Frontend: `http://localhost:5173`
 
-## 📝 Key Learnings
+## Key Learnings
 
 - Implemented secure JWT authentication and authorization
 - Designed and integrated RESTful APIs with MongoDB
